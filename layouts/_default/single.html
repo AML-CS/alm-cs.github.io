@@ -1,0 +1,12 @@
+{{ partial "header.html" . }}
+{{ if .Date }}
+  <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
+{{ end }}
+{{ if .Params.cover }}
+  <img class="cover" data-src="{{ .Params.cover.RelPermalink }}" alt="{{ .Title }}">
+{{ end }}
+{{ .Content }}
+{{ if .Params.tags }}
+  {{ partial "tags" .Params.tags }}
+{{ end }}
+{{ partial "footer.html" . }}
