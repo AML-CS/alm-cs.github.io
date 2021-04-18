@@ -26,7 +26,7 @@ a:link,
 a:active,
 a:visited,
 a:hover {
-  color: #1da8be;
+  color: rgb(75, 162, 222);
 }
 
 #site-title {
@@ -86,7 +86,7 @@ nav a:visited {
 }
 
 nav a:hover {
-  color: #1da8be;
+  color: rgb(75, 162, 222);
 }
 
 nav .current {
@@ -227,6 +227,7 @@ ul.pagination {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 12px;
   width: 200px;
 }
 
