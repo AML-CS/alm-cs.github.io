@@ -1,0 +1,10 @@
+<title>{{ .Site.Title }}</title>
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/index.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0">
+<meta charset="utf-8">
+{{ hugo.Generator }}
+
+{{ if isset .Site.Params "mathjax"}}
+<script type="text/javascript" src="{{ .Site.Params.mathjax }}">
+</script>
+{{end}}

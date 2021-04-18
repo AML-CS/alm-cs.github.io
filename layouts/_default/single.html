@@ -1,12 +1,19 @@
-{{ partial "header.html" . }}
-{{ if .Date }}
-  <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+<article>
+  {{ if .Date }}
+    <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
+  {{ end }}
+  <div class="flex-wrapper">
+    <div class="article-body">
+      {{ .Content }}
+    </div>
+    {{ if .Params.cover }}
+      {{ partial "cover" .Params.cover }}
+    {{ end }}
+  </div>
+  {{ if .Params.tags }}
+    {{ partial "tags" .Params.tags }}
+  {{ end }}
+</article>
 {{ end }}
-{{ if .Params.cover }}
-  <img class="cover" data-src="{{ .Params.cover.RelPermalink }}" alt="{{ .Title }}">
-{{ end }}
-{{ .Content }}
-{{ if .Params.tags }}
-  {{ partial "tags" .Params.tags }}
-{{ end }}
-{{ partial "footer.html" . }}
