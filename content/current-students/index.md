@@ -4,7 +4,7 @@ draft: false
 ---
 
 {{< rawhtml >}}
-<div class="images-container">
+<div class="images-table">
 	<div class="card">
 		<img src="images/randy-consuegra.jpg" alt="Randy Steven Consuegra Ortega"/>
 		<sub>
@@ -12,7 +12,7 @@ draft: false
 		</sub>
 	</div>
 	<div class="card">
-		<img src="images/luis-guzman.jpg" alt="Juan Sebastian Rodriguez Donado"/>
+		<img src="images/juan-rodriguez.jpg" alt="Juan Sebastian Rodriguez Donado"/>
 		<sub>
 			Juan Sebastian Rodriguez Donado, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation.
 			<a href="https://sjdonado.github.io" target="_blank">Website</a>
@@ -33,17 +33,19 @@ draft: false
 		</sub>
 	</div>
 	<div class="card">
-		<img src="images/empty.png" alt="Empty"/>
-		<sub></sub>
-	</div>
-	<div class="card">
-		<img src="images/alfonso-mancilla.jpg" alt="Alfonso Manuel Mancilla Herrera"/>
+		<img src="images/sebastian-molano.jpg" alt="Sebastián Molano"/>
 		<sub>
-			Alfonso Manuel Mancilla Herrera, Ph,D. in Computer Science, Non-Linear Data Assimilation Methods.
+			Sebastián Molano, B.Sc. in Computer Science.
 		</sub>
 	</div>
 	<div class="card">
-		<img src="images/empty.png" alt="Empty"/>
+		<img src="images/alejandro-manotas.jpg" alt="Alejandro Manotas"/>
+		<sub>
+			Alejandro Manotas, B.Sc. in Computer Science.
+		</sub>
+	</div>
+	<div class="card">
+		<img src="images/felipe-acevedo.jpg" alt="Felipe Jose Acevedo Garcia"/>
 		<sub>
 			Felipe Jose Acevedo Garcia, M.Sc. in Computer Science.
 		</sub>

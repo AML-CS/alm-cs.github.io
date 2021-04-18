@@ -22,43 +22,38 @@ weight = 1
 name = "Home"
 url = "/"
 
-# [[menu.main]]
-# weight = 4
-# name = "More items"
-# url = "/more/"
-# identifier = "more"
-#   [[menu.main]]
-#   parent = "more"
-#   weight = 1
-#   name = "Some more menu"
-#   url = "/more/some-more-menu/"
-#   [[menu.main]]
-#   parent = "more"
-#   weight = 2
-#   name = "items to show"
-#   url = "/more/items-to-show/"
-#   [[menu.main]]
-#   parent = "more"
-#   weight = 3
-#   name = "the nested menus feature"
-#   url = "/more/the-nested-menus-feature/"
-
 [[menu.main]]
 weight = 2
+name = "Talks"
+url = "/talks/"
+identifier = "talks"
+  [[menu.main]]
+  parent = "talks"
+  weight = 1
+  name = "Talks series"
+  url = "/talks/talk-series/"
+  [[menu.main]]
+  parent = "talks"
+  weight = 2
+  name = "Talks by Dr. Elias Nino-Ruiz"
+  url = "/talks/elias-niño/"
+
+[[menu.main]]
+weight = 3
 name = "Posts"
 url = "/posts/"
 
 [[menu.main]]
-weight = 3
+weight = 4
 name = "Current Students"
 url = "/current-students/"
 
 [[menu.main]]
-weight = 4
+weight = 5
 name = "Former Students"
 url = "/former-students/"
 
 [[menu.main]]
-weight = 5
+weight = 6
 name = "Publications"
 url = "/publications/"

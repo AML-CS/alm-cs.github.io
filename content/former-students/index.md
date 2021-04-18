@@ -4,7 +4,7 @@ draft: false
 ---
 
 {{< rawhtml >}}
-<div class="images-container">
+<div class="images-table">
 	<div class="card">
 		<img src="images/juan-calabria.jpg" alt="Juan C. Calabria Sarmiento"/>
 		<sub>
@@ -28,6 +28,12 @@ draft: false
 		<img src="images/luis-morales.jpg" alt="Luis Ernesto Morales Retat"/>
 		<sub>
 			Luis Ernesto Morales Retat, M.Sc. in Computer Science, Soft Computing Methods for Optimal Radius of Influence Estimation in Ensemble Based Data Assimilation. (2018).
+		</sub>
+	</div>
+	<div class="card">
+		<img src="images/alfonso-mancilla.jpg" alt="Alfonso Manuel Mancilla Herrera"/>
+		<sub>
+			Alfonso Manuel Mancilla Herrera, Ph,D. in Computer Science, Non-Linear Data Assimilation Methods. (2021)
 		</sub>
 	</div>
 </div>

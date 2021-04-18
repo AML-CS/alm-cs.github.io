@@ -2,7 +2,9 @@
 <h1>{{ .Title }}</h1>
 {{ range sort .Paginator.Pages }}
   <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-  <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
+  {{ if .Params.Date }}
+    <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
+  {{ end }}
   <div class="content">
     {{ .Summary | plainify | safeHTML }}
     {{ if .Truncated }}

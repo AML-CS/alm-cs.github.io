@@ -214,7 +214,7 @@ ul.pagination {
   text-decoration: none;
 }
 
-.images-container {
+.images-table, .images-gallery {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -231,12 +231,32 @@ ul.pagination {
   width: 200px;
 }
 
+.card sub {
+  width: 200px;
+}
+
 .card img {
   max-width: 200px;
   min-width: 200px;
   margin-bottom: 12px;
 }
 
+.images-gallery > .card, .images-gallery > .card sub {
+  width: 400px;
+}
+
+.images-gallery > .card img {
+  max-width: 400px;
+  min-width: 400px;
+}
+
+
+.img-header {
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-bottom: 24px;
+}
 
 @media (min-width: 620px) {
   .cover {
