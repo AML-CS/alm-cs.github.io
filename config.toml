@@ -57,3 +57,8 @@ url = "/former-students/"
 weight = 6
 name = "Publications"
 url = "/publications/"
+
+[[menu.main]]
+weight = 7
+name = "Awards"
+url = "/awards/"

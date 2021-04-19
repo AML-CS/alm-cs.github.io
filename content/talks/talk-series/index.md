@@ -28,5 +28,33 @@ draft: false
 			Nature-Inspired Algorithms: Challenges and Open Problems, Senior Research Scientist at National Physical Laboratory, MiddleSex University, UK.
 		</sub>
 	</div>
+	<div class="card">
+    <a href="https://youtu.be/K3Yt4zkXyUk" target="_blank"><img src="images/11-09-2020.jpg" alt="alibration and Kalman Filtering for Tide and Storm-Surge Models"/></a>
+		<sub>
+      <b>11/09/2020 - English</b>
+			Calibration and Kalman Filtering for Tide and Storm-Surge Models. Senior Researcher Oceanography/Mathematics. DELTARES. The Netherlands.
+		</sub>
+	</div>
+	<div class="card">
+    <a href="https://youtu.be/zw-S7B2h3cM" target="_blank"><img src="images/12-11-2020.jpg" alt="Towards scalable algorithms for distributed optimization and learning"/></a>
+		<sub>
+      <b>12/11/2020 - Spanish</b>
+			Towards scalable algorithms for distributed optimization and learning. Massachusetts Institute of Technology.
+		</sub>
+	</div>
+	<div class="card">
+    <a href="https://youtu.be/6rDwD6CqPBM" target="_blank"><img src="images/24-11-2020.jpg" alt="Data assimilation: from dynamically based to data-driven approaches"/></a>
+		<sub>
+      <b>24/11/2020 - English</b>
+			Data assimilation: from dynamically based to data-driven approaches. Dept of Meteorology and NCEO, University of Reading, UK. Mathematical Institute, University of Utrecht, the Netherland.
+		</sub>
+	</div>
+	<div class="card">
+    <a href="https://drive.google.com/file/d/140gKi8jwk1bONUfC7kczxscHJRap59xT/view?usp=sharing" target="_blank"><img src="images/18-03-2021.jpg" alt="Model error covariance estimation in particle filters using batch and online smoother-free adaptations of the Expectation- Maximization algorithm"/></a>
+		<sub>
+      <b>18/03/2021 - Spanish</b>
+			Model error covariance estimation in particle filters using batch and online smoother-free adaptations of the Expectation- Maximization algorithm. Dpto Matemática, FaCENA, UNNE y CONICET. Argentina.
+		</sub>
+	</div>
 </div>
 {{< /rawhtml >}}
