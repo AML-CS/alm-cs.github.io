@@ -110,18 +110,8 @@ hr {
   flex-wrap: wrap-reverse;
 }
 
-article {
-  width: 100%;
-}
-
 .article-body {
-  flex: 7;
   min-width: 300px;
-}
-
-.cover {
-  flex: 3;
-  max-width: 300px;
 }
 
 h1,
@@ -188,6 +178,8 @@ img.left {
 }
 
 #footer {
+  display: flex;
+  justify-content: center;
   clear: both;
   padding-top: 2em;
   font-size: 90%;
@@ -250,7 +242,6 @@ ul.pagination {
   min-width: 400px;
 }
 
-
 .img-header {
   width: 50%;
   display: block;
@@ -258,10 +249,21 @@ ul.pagination {
   margin-bottom: 24px;
 }
 
-@media (min-width: 620px) {
-  .cover {
-    margin-left: 24px;
-  }
+.glider .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.glider .item sub {
+  margin-top: 3px;
+}
+
+.image-right {
+  float: right;
+  margin: 6px;
+  width: 300px;
 }
 
 @media (min-width: 992px) {
@@ -314,5 +316,9 @@ ul.pagination {
   nav ul.second li a,
   nav ul.third li a {
     padding: 0.75em 1em;
+  }
+
+  .image-right {
+    margin-left: 12px;
   }
 }

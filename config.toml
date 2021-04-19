@@ -30,7 +30,7 @@ identifier = "talks"
   [[menu.main]]
   parent = "talks"
   weight = 1
-  name = "Talks series"
+  name = "Talk Series"
   url = "/talks/talk-series/"
   [[menu.main]]
   parent = "talks"

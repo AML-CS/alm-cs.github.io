@@ -4,13 +4,8 @@
   {{ if .Date }}
     <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
   {{ end }}
-  <div class="flex-wrapper">
-    <div class="article-body">
-      {{ .Content }}
-    </div>
-    {{ if .Params.cover }}
-      {{ partial "cover" .Params.cover }}
-    {{ end }}
+  <div class="article-body">
+    {{ .Content }}
   </div>
   {{ if .Params.tags }}
     {{ partial "tags" .Params.tags }}
