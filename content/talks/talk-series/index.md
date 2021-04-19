@@ -1,6 +1,6 @@
 ---
 title: "Talk Series in Computer Science and Applications"
-draft: false
+page: true
 ---
 
 {{< rawhtml >}}

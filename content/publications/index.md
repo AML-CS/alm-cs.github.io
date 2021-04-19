@@ -1,6 +1,6 @@
 ---
 title: "Publications"
-draft: false
+page: true
 ---
 
 1.  **Nino-Ruiz, E. D.**, A Data-Driven Localization Method for Ensemble Based Data Assimilation. _Journal of Computational Science, Vol. 51,_ 101328., _Elsevier_, (2021). ([HTML](http://www.google.com/url?q=http%3A%2F%2Fsciencedirect.com%2Fscience%2Farticle%2Fabs%2Fpii%2FS1877750321000260&sa=D&sntz=1&usg=AFQjCNE-xJqGNoC29nzuq8_yMHex89EZFQ))

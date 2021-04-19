@@ -1,6 +1,6 @@
 ---
 title: "Current Students"
-draft: false
+page: true
 ---
 
 {{< rawhtml >}}

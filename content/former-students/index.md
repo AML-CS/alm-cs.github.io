@@ -1,6 +1,6 @@
 ---
 title: "Former Students"
-draft: false
+page: true
 ---
 
 {{< rawhtml >}}

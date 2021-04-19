@@ -1,6 +1,6 @@
 ---
 title: "Talks by Dr. Elias Nino-Ruiz"
-draft: false
+page: true
 ---
 
 1. 15/05/2020 - Métodos de Machine Learning e Inteligencia Artificial: Oportunidades Para Estimar el Impacto del SAR-COV-2 en Colombia - (Spanish). [Video](https://youtu.be/mW3P-UxZDZA)

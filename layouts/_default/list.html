@@ -1,18 +1,22 @@
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
 {{ range sort .Paginator.Pages }}
-  <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-  {{ if .Params.Date }}
-    <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
-  {{ end }}
-  <div class="content">
-    {{ .Summary | plainify | safeHTML }}
-    {{ if .Truncated }}
-      <a href='{{ .Permalink }}'><nobr>Read more →</nobr></a>
+  {{ if not .Params.draft }}
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    {{ if .Params.Date }}
+      <p class="timestamp">{{ .Date.Format "January 2, 2006" }}</p>
     {{ end }}
-  </div>
-  {{ if .Params.tags }}
-    {{ partial "tags" .Params.tags }}
+    {{ if not .Params.page }}
+      <div class="content">
+        {{ .Summary | plainify | safeHTML }}
+        {{ if .Truncated }}
+          <a href='{{ .Permalink }}'><nobr>Read more →</nobr></a>
+        {{ end }}
+      </div>
+      {{ if .Params.tags }}
+        {{ partial "tags" .Params.tags }}
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}
 {{ partial "pagination.html" . }}
