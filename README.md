@@ -1,6 +1,7 @@
-hugo new blog/my-first-post.md
+# AML-CS Uninorte | Web site
+> ![amlcs-logo](content/images/logo.jpg)
 
-
-<!-- {{< second-row >}}
-![Elias D. Nino-Ruiz, Director](/images/elias-niño-director.jpg)
-{{< /second-row >}} -->
+## How to add a post?
+```bash
+hugo new posts/new-post.md
+```

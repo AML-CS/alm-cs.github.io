@@ -1,4 +1,4 @@
-name: github pages
+name: Github pages deploy
 
 on:
   push:
@@ -14,13 +14,13 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.81.0'
+          hugo-version: '0.82.0'
 
       - name: Build
-        run: hugo --minify -d docs
+        run: hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./docs
+          publish_dir: ./public
