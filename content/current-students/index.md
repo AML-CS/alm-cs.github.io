@@ -28,7 +28,7 @@ page: true
 	<div class="card">
 		<img src="images/omar-mejia.jpg" alt="Omar Angel Mejia Suarez"/>
 		<sub>
-			Omar Angel Mejia Suarez, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation. Website
+			Omar Angel Mejia Suarez, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation. 
 			<a href="https://sites.google.com/view/omarmejiasuarez/inicio" target="_blank">Website</a>
 		</sub>
 	</div>
