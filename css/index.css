@@ -278,8 +278,7 @@ img.left {
 }
 
 #footer {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   clear: both;
   padding-top: 2em;
   font-size: 90%;
@@ -349,6 +348,10 @@ ul.pagination {
   margin-bottom: 24px;
 }
 
+.glider-contain {
+  width: 90%;
+}
+
 .glider .item {
   display: flex;
   flex-direction: column;
@@ -361,9 +364,16 @@ ul.pagination {
 }
 
 .image-right {
-  float: right;
-  margin: 6px;
-  width: 300px;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .image-right {
+    float: right;
+    margin-left: 22px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -416,9 +426,5 @@ ul.pagination {
   nav ul.second li a,
   nav ul.third li a {
     padding: 0.75em 1em;
-  }
-
-  .image-right {
-    margin-left: 12px;
   }
 }

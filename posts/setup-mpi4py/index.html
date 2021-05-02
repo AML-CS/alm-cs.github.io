@@ -1,0 +1,33 @@
+<!doctype html><html lang=en-us><head><title>AML-CS | Uninorte</title><link rel=stylesheet href=https://aml-cs.github.io/css/index.css><meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=.5,maximum-scale=3"><meta charset=utf-8><meta property="og:title" content="AML-CS | Uninorte"><meta property="og:description" content="Applied Math and Computer Science Laboratory (AML-CS) at Universidad del Norte in Barranquilla"><meta property="og:image" content="https://aml-cs.github.io/images/logo.jpg"><meta property="og:url" content="https://aml-cs.github.io/"><meta name=twitter:card content="Applied Math and Computer Science Laboratory (AML-CS) at Universidad del Norte in Barranquilla"><meta property="og:site_name" content="AML-CS | Uninorte"><meta name=generator content="Hugo 0.82.0"><script type=text/javascript src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type=text/javascript src=https://aml-cs.github.io/js/index.js></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css><script src=https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js></script></head><body><div id=container><div id=header><div id=site-logo><img src=https://aml-cs.github.io/images/logo.jpg alt="AML-CS logo"></div></div><nav><ul class=first><li><a href=/>Home</a></li><li><a href=/talks/>Talks &#187;</a><ul class=second><li><a href=/talks/talk-series/>Talk Series</a></li><li><a href=/talks/elias-ni%C3%B1o/>Talks by Dr. Elias Nino-Ruiz</a></li></ul></li><li><a href=/posts/>Posts</a></li><li><a href=/current-students/>Current Students</a></li><li><a href=/former-students/>Former Students</a></li><li><a href=/publications/>Publications</a></li><li><a href=/awards/>Awards</a></li></ul></nav><div id=content><h1>Setup mpi4py in Uninorte HPC</h1><article><p class=timestamp>April 10, 2021</p><div class=article-body><p>Tutorial about how to setup mpi4py using miniconda in Uninorte HPC. Also, interactive and SBATCH examples are included.</p><h2 id=setup-conda-env>Setup conda env</h2><ul><li>Load nested modules</li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>module purge
+module load miniconda gnu8/8.3.0 openmpi3/3.1.4
+</code></pre></div><ul><li>Create conda env</li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>conda create --name mpi4py <span style=color:teal>python</span><span style=color:#000;font-weight:700>=</span>3.7 -y
+<span style=color:#0086b3>eval</span> <span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>$(</span>conda shell.bash hook<span style=color:#000;font-weight:700>)</span><span style=color:#d14>&#34;</span>
+conda activate mpi4py
+</code></pre></div><ul><li>Install python libs</li></ul><div class=highlight><pre style=background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#0086b3>export</span> <span style=color:teal>MPICC</span><span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>$(</span>which mpicc<span style=color:#000;font-weight:700>)</span>
+pip install numpy matplotlib seaborn scipy netCDF4 pandas mpi4py
+</code></pre></div><h2 id=run-interactive-session>Run interactive session</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>salloc --job-name <span style=color:#d14>&#34;mpi4py-test&#34;</span> --nodes <span style=color:#099>1</span> --ntasks <span style=color:#099>4</span> --cpus-per-task<span style=color:#000;font-weight:700>=</span><span style=color:#099>1</span> -t 24:00:00 -A syseng -p syseng
+
+module purge
+module load miniconda gnu8/8.3.0 openmpi3/3.1.4
+
+<span style=color:#0086b3>eval</span> <span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>$(</span>conda shell.bash hook<span style=color:#000;font-weight:700>)</span><span style=color:#d14>&#34;</span>
+conda activate mpi4py
+
+mpiexec -n <span style=color:#099>4</span> python test_CPU.py 2&gt; err.log
+</code></pre></div><h2 id=run-sbatch>Run SBATCH</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
+</span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic>#SBATCH --job-name=mpi4py-test   # create a name for your job</span>
+<span style=color:#998;font-style:italic>#SBATCH --nodes=1                # node count</span>
+<span style=color:#998;font-style:italic>#SBATCH --ntasks=8               # total number of tasks</span>
+<span style=color:#998;font-style:italic>#SBATCH --cpus-per-task=1        # cpu-cores per task</span>
+<span style=color:#998;font-style:italic>#SBATCH --time=24:00:00          # total run time limit (HH:MM:SS)</span>
+<span style=color:#998;font-style:italic>#SBATCH --account=syseng</span>
+<span style=color:#998;font-style:italic>#SBATCH --partition=syseng</span>
+
+module purge
+module load miniconda gnu8/8.3.0 openmpi3/3.1.4
+
+<span style=color:#0086b3>eval</span> <span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>$(</span>conda shell.bash hook<span style=color:#000;font-weight:700>)</span><span style=color:#d14>&#34;</span>
+conda activate mpi4py
+
+srun python hello_mpi.py
+</code></pre></div><h2 id=more-info>More info</h2><ul><li><a href=https://researchcomputing.princeton.edu/support/knowledge-base/mpi4py>https://researchcomputing.princeton.edu/support/knowledge-base/mpi4py</a></li><li><a href=https://batchdocs.web.cern.ch/linuxhpc/introduction.html>https://batchdocs.web.cern.ch/linuxhpc/introduction.html</a></li><li><a href=https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html>https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html</a></li><li><a href=https://pdc-support.github.io/introduction-to-mpi/setup.html>https://pdc-support.github.io/introduction-to-mpi/setup.html</a></li></ul></div></article></div><div id=footer>Copyright 2021 Universidad del Norte, Colombia.</div></div></body></html>
