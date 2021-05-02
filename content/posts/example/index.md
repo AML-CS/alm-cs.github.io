@@ -68,17 +68,27 @@ Vana'diel Chocobo Society | Chocobo Raising | FFXI:TOAU
 
 #### Code block with backticks
 
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Example HTML5 Document</title>
-</head>
-<body>
-  <p>Test</p>
-</body>
-</html>
+```bash
+export MPICC=$(which mpicc)
+pip install numpy matplotlib seaborn scipy netCDF4 pandas mpi4py
+```
+
+
+```js
+function testing() {
+  console.log('test');
+}
+```
+
+```python
+def fib(n):
+  a, b = 0, 1
+  while a < n:
+    print(a, end=' ')
+    a, b = b, a+b
+  print()
+
+fib(1000)
 ```
 
 #### Code block indented with four spaces
@@ -136,9 +146,9 @@ Vana'diel Chocobo Society | Chocobo Raising | FFXI:TOAU
 
 <abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
 
-H<sub>2</sub>O
+$H_2O$
 
-X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
+$$X_n + Y_n = Z_n$$ 
 
 Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
 

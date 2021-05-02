@@ -3,7 +3,6 @@ title: "Talk Series in Computer Science and Applications"
 page: true
 ---
 
-{{< rawhtml >}}
 <img class="img-header" src="images/talk-series.png" alt="Talk series logo"/>
 
 <div class="images-gallery">
@@ -57,4 +56,3 @@ page: true
 		</sub>
 	</div>
 </div>
-{{< /rawhtml >}}

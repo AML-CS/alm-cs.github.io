@@ -3,7 +3,6 @@ title: "Current Students"
 page: true
 ---
 
-{{< rawhtml >}}
 <div class="images-table">
 	<div class="card">
 		<img src="images/randy-consuegra.jpg" alt="Randy Steven Consuegra Ortega"/>
@@ -55,4 +54,3 @@ page: true
 		<sub></sub>
 	</div>
 </div>
-{{< /rawhtml >}}

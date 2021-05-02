@@ -3,7 +3,6 @@ title: "Former Students"
 page: true
 ---
 
-{{< rawhtml >}}
 <div class="images-table">
 	<div class="card">
 		<img src="images/juan-calabria.jpg" alt="Juan C. Calabria Sarmiento"/>
@@ -37,4 +36,3 @@ page: true
 		</sub>
 	</div>
 </div>
-{{< /rawhtml >}}

@@ -3,9 +3,7 @@
 page: true
 ---
 
-{{< rawhtml >}}
 <img class="image-right" src="images/elias-niño-director.jpg" alt="Elias D. Nino-Ruiz, Ph.D"/>
-{{< /rawhtml >}}
 
 Welcome to the Applied Math and Computer Science Laboratory (AML-CS) at Universidad del Norte in Barranquilla, Colombia. The group was founded in Apr, 2017. AML-CS is a space that brings together people from different fields of science. We are highly motivated to solve real-life problems via scientific computing, mathematics, and statistics. Our students have the chance to face issues such as those found in Data Assimilation, Inverse Problems, Applied Statistics, and Numerical Optimization. For instance, Data-Driven models are of primary interest for us; it is fascinating to see what data can tell us about the underlying (physical) process. In this manner, we can forecast based on our statistical knowledge of the process. Also, we employ numerical models to predict physical phenomena and to understand the world where we live. In general, we are open to solve problems in the following fields:
 
@@ -21,9 +19,8 @@ Feel free to contact me if you want to be part of my group.
 [Elias D. Nino-Ruiz, Ph.D](https://sites.google.com/vt.edu/eliasn/), Director. (aml-cs@uninorte.edu.co)
 
 ---
-# Last resources
+## Last resources
 
-{{< rawhtml >}}
 <div class="item">
   <img src="images/error-bounds.jpg" alt="Error bounds for solving linear systems in the preconditioned Crank-Nicolson scheme"/>
   <sub>
@@ -31,7 +28,6 @@ Feel free to contact me if you want to be part of my group.
     <a href="https://doi.org/10.1016/j.aml.2020.106254" target="_blank">https://doi.org/10.1016/j.aml.2020.106254</a>
   </sub>
 </div>
-{{< /rawhtml >}}
 
 ---
 

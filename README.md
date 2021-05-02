@@ -16,14 +16,8 @@ hugo new posts/new-post/index.md
 - Make sure to have `draft: false`
 - Make a new commit and push it to master
 
-## Raw HTML support
-
-You can embed raw html inside markdown files using the `rawhtml` shortcode. ie:
-```markdown
-{{< rawhtml >}}
-<img class="image-right" src="images/image.jpg" alt="Alt content"/>
-{{< /rawhtml >}}
-```
+## Markdown features
+Example available in `content/posts/example/index.md`
 
 ## How to run in develop
 ```bash
