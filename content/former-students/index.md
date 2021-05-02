@@ -14,7 +14,7 @@ page: true
 		<img src="images/luis-guzman.jpg" alt="Luis Gabriel Guzman Reyes"/>
 		<sub>
 			Luis Gabriel Guzman Reyes, Ph.D. in Computer Science, Shrinkage Covariance Matrix Estimation in Ensemble-Based Data Assimilation. (2020).
-			<a href="https://sites.google.com/view/luis-guzman/home" target="_blank">Website</a>
+			<a href="https://sites.google.com/view/luis-guzman/home" target="_blank" rel="noreferrer">Website</a>
 		</sub>
 	</div>
 	<div class="card">

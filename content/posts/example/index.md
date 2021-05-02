@@ -148,7 +148,7 @@ fib(1000)
 
 $H_2O$
 
-$$X_n + Y_n = Z_n$$ 
+$$X^n + Y^n = Z^n$$ 
 
 Press <kbd><kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd></kbd> to end the session.
 

@@ -25,11 +25,9 @@ Feel free to contact me if you want to be part of my group.
   <img src="images/error-bounds.jpg" alt="Error bounds for solving linear systems in the preconditioned Crank-Nicolson scheme"/>
   <sub>
     <b>Error bounds</b> for solving linear systems in the preconditioned <b>Crank-Nicolson</b> scheme. The black line denotes the boundary between convergence and divergence in proposal steps. <b>Nino-Ruiz, E. D</b>. <u>A numerical method for solving linear systems in the preconditioned Crank–Nicolson algorithm</u>. Applied Mathematics Letters, Eslevier. (2020).
-    <a href="https://doi.org/10.1016/j.aml.2020.106254" target="_blank">https://doi.org/10.1016/j.aml.2020.106254</a>
+    <a href="https://doi.org/10.1016/j.aml.2020.106254" target="_blank" rel="noreferrer">https://doi.org/10.1016/j.aml.2020.106254</a>
   </sub>
 </div>
-
----
 
 {{< carrousel >}}
   <div class="item">
