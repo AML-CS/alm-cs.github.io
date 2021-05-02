@@ -71,7 +71,7 @@ url = "/awards/"
     lineNos = false
     lineNumbersInTable = true
     noClasses = true
-    style = "xcode"
+    style = "github"
     tabWidth = 2
 
 [markup.goldmark.renderer]
