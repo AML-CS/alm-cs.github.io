@@ -1,10 +1,10 @@
 ---
-title: "Setup mpi4py in Uninorte HPC"
+title: "Setup mpi4py in OpenHPC"
 date: 2021-04-10T22:16:02.505Z
 draft: false
 ---
 
-Tutorial about how to setup mpi4py using miniconda in Uninorte HPC. Also, interactive and SBATCH examples are included.
+How to setup mpi4py using miniconda in Centos 7 - OpenHPC. Including examples for run an Interactive session and SBATCH.
 <!--more-->
 
 ## Setup conda env
