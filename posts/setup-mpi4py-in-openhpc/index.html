@@ -17,7 +17,7 @@ mpiexec -n <span style=color:#099>4</span> python test_CPU.py 2&gt; err.log
 </code></pre></div><h2 id=run-sbatch>Run SBATCH</h2><div class=highlight><pre style=background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#999;font-weight:700;font-style:italic>#!/bin/bash
 </span><span style=color:#999;font-weight:700;font-style:italic></span><span style=color:#998;font-style:italic>#SBATCH --job-name=mpi4py-test   # create a name for your job</span>
 <span style=color:#998;font-style:italic>#SBATCH --nodes=1                # node count</span>
-<span style=color:#998;font-style:italic>#SBATCH --ntasks=8               # total number of tasks</span>
+<span style=color:#998;font-style:italic>#SBATCH --ntasks=4               # total number of tasks</span>
 <span style=color:#998;font-style:italic>#SBATCH --cpus-per-task=1        # cpu-cores per task</span>
 <span style=color:#998;font-style:italic>#SBATCH --time=24:00:00          # total run time limit (HH:MM:SS)</span>
 <span style=color:#998;font-style:italic>#SBATCH --account=syseng</span>
@@ -29,5 +29,5 @@ module load miniconda gnu8/8.3.0 openmpi3/3.1.4
 <span style=color:#0086b3>eval</span> <span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>$(</span>conda shell.bash hook<span style=color:#000;font-weight:700>)</span><span style=color:#d14>&#34;</span>
 conda activate mpi4py
 
-srun python hello_mpi.py
+mpiexec -n <span style=color:#099>4</span> python test_CPU.py
 </code></pre></div><h2 id=more-info>More info</h2><ul><li><a href=https://researchcomputing.princeton.edu/support/knowledge-base/mpi4py>https://researchcomputing.princeton.edu/support/knowledge-base/mpi4py</a></li><li><a href=https://batchdocs.web.cern.ch/linuxhpc/introduction.html>https://batchdocs.web.cern.ch/linuxhpc/introduction.html</a></li><li><a href=https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html>https://docs.conda.io/projects/conda/en/4.6.1/user-guide/tasks/manage-environments.html</a></li><li><a href=https://pdc-support.github.io/introduction-to-mpi/setup.html>https://pdc-support.github.io/introduction-to-mpi/setup.html</a></li></ul></div></article></div><div id=footer>Copyright 2021 Universidad del Norte, Colombia.</div></div></body></html>
