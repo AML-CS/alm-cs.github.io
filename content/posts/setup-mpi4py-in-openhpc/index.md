@@ -51,7 +51,7 @@ mpiexec -n 4 python test_CPU.py 2> err.log
 #!/bin/bash
 #SBATCH --job-name=mpi4py-test   # create a name for your job
 #SBATCH --nodes=1                # node count
-#SBATCH --ntasks=8               # total number of tasks
+#SBATCH --ntasks=4               # total number of tasks
 #SBATCH --cpus-per-task=1        # cpu-cores per task
 #SBATCH --time=24:00:00          # total run time limit (HH:MM:SS)
 #SBATCH --account=syseng
@@ -63,7 +63,7 @@ module load miniconda gnu8/8.3.0 openmpi3/3.1.4
 eval "$(conda shell.bash hook)"
 conda activate mpi4py
 
-srun python hello_mpi.py
+mpiexec -n 4 python test_CPU.py
 ```
 
 ## More info
