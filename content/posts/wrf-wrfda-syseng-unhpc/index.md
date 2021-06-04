@@ -4,7 +4,7 @@ date: 2021-06-02T19:45:02.789Z
 draft: false
 ---
 
-The following guide show how to install, configure and run the Weather Research and Forecasting Model (WRF) and it's most popular module WRFDA in CentOS 8.2 - OpenHPC.
+The following guide show how to install, configure and run the Weather Research and Forecasting Model (WRF) and it's most popular module WRFDA in CentOS 7 - OpenHPC.
 <!--more-->
 
 ## WRF

@@ -1,5 +1,5 @@
 ---
-title: "Setup mpi4py in OpenHPC"
+title: "Setup mpi4py in Uninorte HPC"
 date: 2021-04-10T22:16:02.505Z
 draft: false
 ---
