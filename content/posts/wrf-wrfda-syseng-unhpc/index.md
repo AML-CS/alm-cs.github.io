@@ -15,7 +15,7 @@ For the execution of WRF it is necessary to download, compile and configure WPS 
 ### Loading Module
 Once the previous scripts have been executed, we proceed to load the WRF / 4.2.0 module, this by executing the following command:
 ```shell
-module load wrf
+module load wrf/4.3 wrfda/4.3
 ```
 ### Create a workspace folder
 ```shell
@@ -48,12 +48,14 @@ Downloading fnl_20200101_00_00.grib2
 100.000 % CompletedObservations saved in ./real-data!
 ```
 
+
+
 ### Running WPS
 The WRF Pre-Processing System (WPS) is a collection of Fortran and C programs that provides data used as input to the real.exe and real_nmm.exe programs. There are three main programs and a number of auxiliary programs that are part of WPS.  Both the ARW and NMM  dynamical cores in WRF are supported by WPS. 
 
 To run WPS it is necessary to have downloaded the geographic data, modify the namelist.wps file with the parameters, domain and dimensions of the mesh, to know a little more about these parameters enter [here](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html) this file is located at `${WPS_DIR}` directory. Then run the following command specifying the start date and the end date.
 ```shell
-run-wps -f [INITIAL DATE] -t [FINAL DATE] -i [NUMBER OF HOURS] [INITIAL CONDITIONS]
+run-wps [INITIAL DATE] [FINAL DATE] -i [NUMBER OF HOURS] -g [GRID SIZE] --real-data [INITIAL CONDITIONS]
 ```
 `[INITIAL DATE]` and `[FINAL DATE]` in the format `"YYYY-MM-DD HH"`
 `[INITIAL CONDITIONS]` Directory that contains inital conditions Ex: `./real-data`
@@ -61,7 +63,7 @@ run-wps -f [INITIAL DATE] -t [FINAL DATE] -i [NUMBER OF HOURS] [INITIAL CONDITIO
 
 **Example**
 ```shell
-run-wps -f "2020-01-01 00" -t "2020-01-02 18" -i 6 ./real-data 
+run-wps "2021-01-05 00" "2021-01-07 18" -i 6 -g 1000 --real-data ./real-data
 ```
 ```=shell
 Start date: 2020-01-01_00:00:00
@@ -82,33 +84,17 @@ Successful completion
 Weather Research and Forecasting Model (WRF) is a mesoscale numerical weather prediction system. To execute WRF it is necessary to modify the namelist.input file with the desired parameters, to know a little more about these parameters enter [here](https://esrl.noaa.gov/gsd/wrfportal/namelist_input_options.html) this file is located at `${WRF_DIR}` directory. Then execute the following command specifying the start date, the end date, the number of hours that the interval comprises and the output directory.
 
 ```shell
-run-wrf -f [INITIAL DATE] -t [FINAL DATE] -h [NUMBERS OF HOURS TO RUN] -i [NUMBER OF HOURS] -o [OUTPUT FILENAME] 
+run-wrf  [INITIAL DATE]  [FINAL DATE]  -i [NUMBER OF HOURS] -n [NUMBER OF TASKS] -g [GRID SIZE] --srun --only-real
 ```
+
+```shell
+run-wrf  [INITIAL DATE]  [FINAL DATE]  -i [NUMBER OF HOURS] -n [NUMBER OF TASKS] -g [GRID SIZE] -o [OUTPUT DIRECTORY] --srun --only-wrf
+```
+
 `[INITIAL DATE]` and `[FINAL DATE]` in the format `"YYYY-MM-DD HH"`
 `[NUMBER OF HOURS]` here you put the numbers of hours between the observations.
 
-**Example**
-```shell
- run-wrf -f "2020-01-01 00" -t "2020-01-02 18" -i 6 -h 42 -o wrf_output
-```
-```=shell
-Run hours: 42
-Inverval seconds: 21600
-Start date: 2020-01-01 00
-End date: 2020-01-02 18
-Running real.exe with 5 processors
 
-real    0m3.758s
-user    0m16.766s
-sys     0m1.725s
-
-Running wrf.exe with 32 processors
-
-real    2m51.416s
-user    88m15.220s
-sys     2m52.299s
-Successful WRF run
-```
 ### ARW-Post
 This module generate GrADS and/or Vis5D input files from WRF ARW output files that allow to visualize the data in GrADS or Python. For this is necessary to modify the namelist.ARWpost file with the desired parameters, this file is located at `${ARW_DIR}` directory. Then execute the following command.
 ```shell
