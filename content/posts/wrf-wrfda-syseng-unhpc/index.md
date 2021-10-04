@@ -12,6 +12,11 @@ WRF 4.2, WPS 4.0, ARWpost, WRFDA 4.0, obsproc, NetCDF, NetCDF-Fortran, GFortran,
 ### Download, compile and configure WRF
 For the execution of WRF it is necessary to download, compile and configure WPS and WRF, in this case all these process are synthesized by the installations scripts `setup-WRF.sh` and `setup-WRFDA.sh`
 
+### First create a new SLRUM job allocation
+```shell
+salloc --job-name "wrf-1km" --ntasks=72 -t 24:00:00 -A syseng -p syseng
+```
+
 ### Loading Module
 Once the previous scripts have been executed, we proceed to load the WRF / 4.2.0 module, this by executing the following command:
 ```shell
@@ -93,8 +98,14 @@ run-wrf  [INITIAL DATE]  [FINAL DATE]  -i [NUMBER OF HOURS] -n [NUMBER OF TASKS]
 
 `[INITIAL DATE]` and `[FINAL DATE]` in the format `"YYYY-MM-DD HH"`
 `[NUMBER OF HOURS]` here you put the numbers of hours between the observations.
-
-
+**Example**
+```shell
+# Run --help or --debug for more info
+run-wrf "2021-01-05 00" "2021-01-07 18" -i 6 -n 8 -g 1000 --srun --only-real
+ 
+# Run --help or --debug for more info
+run-wrf "2021-01-05 00" "2021-01-07 18" -i 6 -n 64 -g 1000 -o ./baq-1km-ensemble/original --srun --only-wrf
+```
 ### ARW-Post
 This module generate GrADS and/or Vis5D input files from WRF ARW output files that allow to visualize the data in GrADS or Python. For this is necessary to modify the namelist.ARWpost file with the desired parameters, this file is located at `${ARW_DIR}` directory. Then execute the following command.
 ```shell
