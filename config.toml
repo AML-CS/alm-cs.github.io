@@ -42,21 +42,32 @@ url = "/posts/"
 
 [[menu.main]]
 weight = 4
+name = "Events"
+url = "/events/"
+identifier = "events"
+  [[menu.main]]
+  parent = "events"
+  weight = 1
+  name = "3rd International Workshop on Data Assimilation"
+  url = "/events/3rd-international-da-workshop/"
+
+[[menu.main]]
+weight = 5
 name = "Current Students"
 url = "/current-students/"
 
 [[menu.main]]
-weight = 5
+weight = 6
 name = "Former Students"
 url = "/former-students/"
 
 [[menu.main]]
-weight = 6
+weight = 7
 name = "Publications"
 url = "/publications/"
 
 [[menu.main]]
-weight = 7
+weight = 8
 name = "Awards"
 url = "/awards/"
 
