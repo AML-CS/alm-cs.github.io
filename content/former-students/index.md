@@ -35,4 +35,18 @@ page: true
 			Alfonso Manuel Mancilla Herrera, Ph,D. in Computer Science, Non-Linear Data Assimilation Methods. (2021)
 		</sub>
 	</div>
+	<div class="card">
+		<img src="images/randy-consuegra.jpg" alt="Randy Steven Consuegra Ortega"/>
+		<sub>
+			Randy Steven Consuegra Ortega, M.Sc. in Computer Science. Data-Driven Models for Variational Data Assimilation. <a href="https://sites.google.com/view/rsconsuegra/home" target="_blank" rel="noreferrer">Website</a>
+		</sub>
+	</div>
+	<div class="card">
+		<img src="images/empty.png" alt="Empty"/>
+		<sub></sub>
+	</div>
+	<div class="card">
+		<img src="images/empty.png" alt="Empty"/>
+		<sub></sub>
+	</div>
 </div>

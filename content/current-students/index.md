@@ -5,12 +5,6 @@ page: true
 
 <div class="images-table">
 	<div class="card">
-		<img src="images/randy-consuegra.jpg" alt="Randy Steven Consuegra Ortega"/>
-		<sub>
-			Randy Steven Consuegra Ortega, M.Sc. in Computer Science. Data-Driven Models for Variational Data Assimilation. <a href="https://sites.google.com/view/rsconsuegra/home" target="_blank" rel="noreferrer">Website</a>
-		</sub>
-	</div>
-	<div class="card">
 		<img src="images/juan-rodriguez.jpg" alt="Juan Sebastian Rodriguez Donado"/>
 		<sub>
 			Juan Sebastian Rodriguez Donado, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation.
@@ -27,20 +21,14 @@ page: true
 	<div class="card">
 		<img src="images/omar-mejia.jpg" alt="Omar Angel Mejia Suarez"/>
 		<sub>
-			Omar Angel Mejia Suarez, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation. 
+			Omar Angel Mejia Suarez, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation.
 			<a href="https://sites.google.com/view/omarmejiasuarez/inicio" target="_blank" rel="noreferrer">Website</a>
 		</sub>
 	</div>
 	<div class="card">
-		<img src="images/sebastian-molano.jpg" alt="Sebastián Molano"/>
+		<img src="images/sebastian-ariza.jpg" alt="Sebastian Ariza"/>
 		<sub>
-			Sebastián Molano, B.Sc. in Computer Science.
-		</sub>
-	</div>
-	<div class="card">
-		<img src="images/alejandro-manotas.jpg" alt="Alejandro Manotas"/>
-		<sub>
-			Alejandro Manotas, B.Sc. in Computer Science.
+			Sebastian Ariza, M.Sc. in Computer Science.
 		</sub>
 	</div>
 	<div class="card">
@@ -48,6 +36,14 @@ page: true
 		<sub>
 			Felipe Jose Acevedo Garcia, M.Sc. in Computer Science.
 		</sub>
+	</div>
+	<div class="card">
+		<img src="images/empty.png" alt="Empty"/>
+		<sub></sub>
+	</div>
+	<div class="card">
+		<img src="images/empty.png" alt="Empty"/>
+		<sub></sub>
 	</div>
 	<div class="card">
 		<img src="images/empty.png" alt="Empty"/>
