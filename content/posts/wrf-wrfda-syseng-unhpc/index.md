@@ -20,7 +20,7 @@ salloc --job-name "wrf-1km" --ntasks=72 -t 24:00:00 -A syseng -p syseng
 ### Loading Module
 Once the previous scripts have been executed, we proceed to load the WRF / 4.2.0 module, this by executing the following command:
 ```shell
-module load wrf/4.3 wrfda/4.3
+module load wrf/4.3 wrfda/4.3-3dvar
 ```
 ### Create a workspace folder
 ```shell
