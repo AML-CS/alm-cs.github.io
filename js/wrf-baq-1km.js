@@ -20,7 +20,7 @@
 			'endDate': (value) => ['WRF End Date', `${value}:00 UTC`],
 			'ogimetUrl': (value) => ['OGIMET query', `<a href="${value}" target="_blank" rel="noopener noreferrer nofollow" >${value}</a>`],
 			'gfsUrls': (value) => ['GFS observations', value.map((url) => `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow" >${url}</a>`).join('<br>')],
-			'baqStationCoordinates': (value) => ['BAQ OGIMET Station Coordinates', `<a href="https://www.google.com/maps/place/${value.join(',')}" target="_blank" rel="noopener noreferrer nofollow" >${value.join(',')}</a>`],
+			'baqStationCoordinates': (value) => ['BAQ OGIMET station', `<a href="https://www.google.com/maps/place/${value.join(',')}" target="_blank" rel="noopener noreferrer nofollow" >${value.join(',')}</a>`],
 			'variablesInterpolated': (value) => ['Variables interpolated', value.join('<br>').replace(/:from [0-9]+/g, '')],
 		}
 
