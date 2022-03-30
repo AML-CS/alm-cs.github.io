@@ -415,7 +415,7 @@ ul.pagination {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	margin: 5px;
+	margin: 8px;
 }
 
 .select-container > label {
