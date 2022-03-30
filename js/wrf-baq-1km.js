@@ -1,10 +1,7 @@
 (async () => {
 	function showApp() {
 		const app = document.getElementById('wrf-baq-1km');
-		const loading = document.getElementById('loading');
-
 		app.classList.remove('hide');
-		loading.style.display = 'none';
 	}
 
 	async function fetchLastReport() {
@@ -51,8 +48,8 @@
 		const ncVariablesToName = {
 			'wind': 'Wind speed',
 			'temp': 'Temperature',
-			'uwind': 'U wind component',
-			'vwind': 'V wind component',
+			'uwind': 'U wind speed',
+			'vwind': 'V wind speed',
 			'press': 'Pressure',
 		}
 

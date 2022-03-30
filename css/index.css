@@ -394,8 +394,12 @@ ul.pagination {
 	display: none;
 }
 
-#loading {
+#wrf-baq-1km.hide > #loading {
 	display: table;
+}
+
+#loading {
+	display: none;
 	margin: 4px auto;
 	padding: 200px;
 }
