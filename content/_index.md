@@ -16,7 +16,7 @@ Welcome to the Applied Math and Computer Science Laboratory (AML-CS) at Universi
 
 Feel free to contact me if you want to be part of my group.
 
-[Elias D. Nino-Ruiz, Ph.D](https://sites.google.com/vt.edu/eliasn/), Director. (aml-cs@uninorte.edu.co)
+[Elias D. Nino-Ruiz, Ph.D](https://enino84.github.io/), Director. (aml-cs@uninorte.edu.co)
 
 ---
 ## Last resources
