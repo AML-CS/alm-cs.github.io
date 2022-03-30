@@ -1,6 +1,21 @@
-(async () => {
+window.initWRFBaq1kmApp = async function init() {
+	const API_ENDPOINT = 'https://wrf-baq-1km.s3.amazonaws.com/last';
+
+	const ncVariablesToName = {
+		'wind': 'Wind speed',
+		'temp': 'Temperature',
+		'uwind': 'U wind speed',
+		'vwind': 'V wind speed',
+		'press': 'Pressure',
+	};
+
+	function showApp() {
+		const app = document.getElementById('wrf-baq-1km');
+		app.classList.remove('hide');
+	}
+
 	async function fetchLastReport() {
-		const data = await fetch('https://wrf-baq-1km.s3.amazonaws.com/last/report.json').then(res => res.json());
+		const data = await fetch(`${API_ENDPOINT}/report.json`).then(res => res.json());
 		return data;
 	}
 
@@ -11,11 +26,10 @@
 			'createdAt': (value) => ['Updated', `${value} UTC`],
 			'startDate': (value) => ['WRF Start Date', `${value}:00 UTC`],
 			'endDate': (value) => ['WRF End Date', `${value}:00 UTC`],
+			'gfsUrls': (value) => ['GFS data', value.map((url) => `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow" >${url}</a>`).join('<br>')],
 			'ogimetUrl': (value) => ['OGIMET query', `<a href="${value}" target="_blank" rel="noopener noreferrer nofollow" >${value}</a>`],
-			'ncVariables': (value) => ['Variables', value.join('<br>')],
-			'gfsUrls': (value) => ['GFS observations', value.map((url) => `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow" >${url}</a>`).join('<br>')],
-			'baqStationCoordinates': (value) => ['BAQ OGIMET Station Coordinates', `<a href="https://www.google.com/maps/place/${value.join(',')}" target="_blank" rel="noopener noreferrer nofollow" >${value.join(',')}</a>`],
-			'variablesInterpolated': (value) => ['Variables interpolated', value.join('<br>').replace(/:from [0-9]+/g, '')],
+			'ogimetStationCoordinates': (value) => ['SKBQ station', `<a href="https://www.google.com/maps/place/${value.join(',')}" target="_blank" rel="noopener noreferrer nofollow" >${value.join(',')}</a>`],
+			'interpolatedVariables': (value) => ['Interpolated variables', value.join('<br>').replace(/:fcst(.*?):from [0-9]+/g, '')],
 		}
 
 		Object.entries(data).forEach(([key, value]) => {
@@ -23,31 +37,45 @@
 			const keyTd = document.createElement('td');
 			const valueTd = document.createElement('td');
 
-			const [title, valueParsed] = format[key](value);
+			if (key in format) {
+				const [title, valueParsed] = format[key](value);
 
-			console.log(title, valueParsed)
+				keyTd.innerHTML = title;
+				valueTd.innerHTML = valueParsed;
 
-			keyTd.innerHTML = title;
-			valueTd.innerHTML = valueParsed;
+				tr.appendChild(keyTd);
+				tr.appendChild(valueTd);
 
-			tr.appendChild(keyTd);
-			tr.appendChild(valueTd);
-
-			reportDataTable.appendChild(tr);
+				reportDataTable.appendChild(tr);
+			}
 		});
+	}
+
+	function setVariableImg(variable) {
+		const variablesGifs = document.getElementById('variables-gifs');
+		const variableGif = document.createElement('img');
+
+		variableGif.src = `${API_ENDPOINT}/${variable}.gif`;
+		variableGif.alt = ncVariablesToName[variable];
+
+		if (variablesGifs.querySelector('img')) {
+			variablesGifs.removeChild(variablesGifs.querySelector('img'));
+		}
+
+		variablesGifs.appendChild(variableGif);
 	}
 
 	function initVariablesSelect(data) {
 		const variablesSelect = document.getElementById('variables-select');
-		const variablesGifs = document.getElementById('variables-gifs');
 
 		data.ncVariables.forEach((variable, index) => {
 			const option = document.createElement('option');
 			option.value = variable;
-			option.textContent = variable;
+			option.textContent = ncVariablesToName[variable];
 
 			if (index === 0) {
 				option.selected = true;
+				setVariableImg(variable);
 			}
 
 			variablesSelect.appendChild(option);
@@ -55,18 +83,15 @@
 
 		variablesSelect.addEventListener('change', (e) => {
 			const variable = e.target.value;
-			const variableGif = document.createElement('img');
-
-			variableGif.src = `https://wrf-baq-1km.s3.amazonaws.com/last/${variable}.gif`;
-			variableGif.alt = `${variable} forecast`;
-
-			variablesGifs.removeChild(variablesGifs.querySelector('img'));
-			variablesGifs.appendChild(variableGif);
+			setVariableImg(variable);
 		});
 	}
 
 	const data = await fetchLastReport();
 
-	initVariablesSelect(data);
-	displayReportData(data);
-})()
+	if (Object.keys(data).length === 8) {
+		initVariablesSelect(data);
+		displayReportData(data);
+		showApp();
+	}
+}

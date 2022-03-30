@@ -5,23 +5,23 @@ page: true
 
 The BAQ 1km Forecast system is running in real time on the HPC cluster at the Universidad del Norte.
 
-Fetchs data from NOAA (GFS) and OGIMET (METAR).
+Fetches data from NOAA (GFS) and OGIMET (METAR).
 Surface level observations are interpolated into the GRIB files.
 
-- Cycle: 00 UTC.
-- Forecast: 03h.
-- GFS: 0.25 degree resolution, global longitude-latitude grid.
-- OGIMET: ICAO SKBQ.
+- **Cycle:** 00, 06, 12, 15, 18, 21 UTC.
+- **Forecast:** Next 3h.
+- **GFS:** 0.25 degree resolution, global longitude-latitude grid.
+- **Altitude:** 150m.
+- **Isobaric level:** 1000hPa.
 
-<div>
+<div id="wrf-baq-1km" class="hide">
+	<span id="loading">Loading...</span>
 	<div>
 		<div class="select-container">
 			<label for="variables-select">Choose a variable:</label>
 			<select id="variables-select" name="variables"></select>
 		</div>
-		<div id="variables-gifs" class="img-loader">
-			<img src="https://wrf-baq-1km.s3.amazonaws.com/last/wind.gif" alt="wind forecast" />
-		</div>
+		<div id="variables-gifs" class="img-loader"></div>
 	</div>
 	<div>
 		<h2>Report info</h2>
@@ -79,3 +79,5 @@ Surface level observations are interpolated into the GRIB files.
  ref_y                               = 41.0,
 /
 ```
+
+<script>window.initWRFBaq1kmApp();</script>
