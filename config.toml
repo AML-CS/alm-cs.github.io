@@ -82,6 +82,11 @@ weight = 9
 name = "Awards"
 url = "/awards/"
 
+[[menu.main]]
+weight = 10
+name = "WRF BAQ Forecast"
+url = "/wrf-baq-1km/"
+
 [markup]
   [markup.highlight]
     anchorLineNos = false

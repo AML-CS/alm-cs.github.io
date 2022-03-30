@@ -390,6 +390,55 @@ ul.pagination {
   vertical-align: bottom;
 }
 
+#report-data {
+	margin: auto;
+}
+
+#report-data td {
+	word-wrap: break-word;
+	max-width: 700px;
+}
+
+.select-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 5px;
+}
+
+.select-container > label {
+	margin-right: 4px;
+}
+
+.img-loader {
+	display: flex;
+  position: relative;
+	margin: 4px;
+	justify-content: center;
+	align-items: center;
+	min-height: 600px;
+	height: 600px;
+	min-width: 600px;
+}
+
+.img-loader:before {
+  content: " ";
+	position: relative;
+  left: 25%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid gray;
+  border-color: transparent gray transparent gray;
+  border-radius: 50%;
+  animation: loader 1s linear infinite;
+}
+
+.img-loader > img {
+  width: 600px;
+  height: 600px;
+	z-index: 1;
+}
+
 @media (min-width: 720px) {
   .image-right {
     float: right;
@@ -399,7 +448,8 @@ ul.pagination {
 
 @media (min-width: 992px) {
   #container {
-    width: 950px;
+    width: 70%;
+		min-width: 950px;
   }
 
   nav ul li a {
@@ -447,5 +497,14 @@ ul.pagination {
   nav ul.second li a,
   nav ul.third li a {
     padding: 0.75em 1em;
+  }
+}
+
+@keyframes loader {
+  0% {
+    transform: translate(-50%,-50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%,-50%) rotate(360deg);
   }
 }
