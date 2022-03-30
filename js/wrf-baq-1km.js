@@ -1,11 +1,13 @@
 (async () => {
+	const API_ENDPOINT = 'https://wrf-baq-1km.s3.amazonaws.com/last';
+
 	function showApp() {
 		const app = document.getElementById('wrf-baq-1km');
 		app.classList.remove('hide');
 	}
 
 	async function fetchLastReport() {
-		const data = await fetch('https://wrf-baq-1km.s3.amazonaws.com/last/report.json').then(res => res.json());
+		const data = await fetch(`${API_ENDPOINT}/report.json`).then(res => res.json());
 		return data;
 	}
 
@@ -69,7 +71,7 @@
 			const variable = e.target.value;
 			const variableGif = document.createElement('img');
 
-			variableGif.src = `https://wrf-baq-1km.s3.amazonaws.com/last/${variable}.gif`;
+			variableGif.src = `${API_ENDPOINT}/${variable}.gif`;
 			variableGif.alt = `${variable} forecast`;
 
 			variablesGifs.removeChild(variablesGifs.querySelector('img'));
