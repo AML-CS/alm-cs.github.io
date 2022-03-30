@@ -1,4 +1,12 @@
 (async () => {
+	function showApp() {
+		const app = document.getElementById('wrf-baq-1km');
+		const loading = document.getElementById('loading');
+
+		app.classList.remove('hide');
+		loading.style.display = 'none';
+	}
+
 	async function fetchLastReport() {
 		const data = await fetch('https://wrf-baq-1km.s3.amazonaws.com/last/report.json').then(res => res.json());
 		return data;
@@ -12,7 +20,6 @@
 			'startDate': (value) => ['WRF Start Date', `${value}:00 UTC`],
 			'endDate': (value) => ['WRF End Date', `${value}:00 UTC`],
 			'ogimetUrl': (value) => ['OGIMET query', `<a href="${value}" target="_blank" rel="noopener noreferrer nofollow" >${value}</a>`],
-			'ncVariables': (value) => ['Variables', value.join('<br>')],
 			'gfsUrls': (value) => ['GFS observations', value.map((url) => `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow" >${url}</a>`).join('<br>')],
 			'baqStationCoordinates': (value) => ['BAQ OGIMET Station Coordinates', `<a href="https://www.google.com/maps/place/${value.join(',')}" target="_blank" rel="noopener noreferrer nofollow" >${value.join(',')}</a>`],
 			'variablesInterpolated': (value) => ['Variables interpolated', value.join('<br>').replace(/:from [0-9]+/g, '')],
@@ -23,17 +30,17 @@
 			const keyTd = document.createElement('td');
 			const valueTd = document.createElement('td');
 
-			const [title, valueParsed] = format[key](value);
+			if (key in format) {
+				const [title, valueParsed] = format[key](value);
 
-			console.log(title, valueParsed)
+				keyTd.innerHTML = title;
+				valueTd.innerHTML = valueParsed;
 
-			keyTd.innerHTML = title;
-			valueTd.innerHTML = valueParsed;
+				tr.appendChild(keyTd);
+				tr.appendChild(valueTd);
 
-			tr.appendChild(keyTd);
-			tr.appendChild(valueTd);
-
-			reportDataTable.appendChild(tr);
+				reportDataTable.appendChild(tr);
+			}
 		});
 	}
 
@@ -41,10 +48,18 @@
 		const variablesSelect = document.getElementById('variables-select');
 		const variablesGifs = document.getElementById('variables-gifs');
 
+		const ncVariablesToName = {
+			'wind': 'Wind speed',
+			'temp': 'Temperature',
+			'uwind': 'U wind component',
+			'vwind': 'V wind component',
+			'press': 'Pressure',
+		}
+
 		data.ncVariables.forEach((variable, index) => {
 			const option = document.createElement('option');
 			option.value = variable;
-			option.textContent = variable;
+			option.textContent = ncVariablesToName[variable];
 
 			if (index === 0) {
 				option.selected = true;
@@ -67,6 +82,9 @@
 
 	const data = await fetchLastReport();
 
-	initVariablesSelect(data);
-	displayReportData(data);
+	if (Object.keys(data).length > 7) {
+		initVariablesSelect(data);
+		displayReportData(data);
+		showApp();
+	}
 })()

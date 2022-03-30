@@ -390,13 +390,25 @@ ul.pagination {
   vertical-align: bottom;
 }
 
+#wrf-baq-1km.hide > div {
+	display: none;
+}
+
+#loading {
+	display: table;
+	margin: 4px auto;
+	padding: 200px;
+}
+
 #report-data {
 	margin: auto;
+	max-width: 90%;
 }
 
 #report-data td {
 	word-wrap: break-word;
-	max-width: 700px;
+	max-width: 50%;
+	min-width: 30%;
 }
 
 .select-container {
@@ -408,6 +420,10 @@ ul.pagination {
 
 .select-container > label {
 	margin-right: 4px;
+}
+
+.select-container > select {
+	width: 300px;
 }
 
 .img-loader {
@@ -424,7 +440,7 @@ ul.pagination {
 .img-loader:before {
   content: " ";
 	position: relative;
-  left: 25%;
+  left: 30%;
   width: 20px;
   height: 20px;
   border: 2px solid gray;
