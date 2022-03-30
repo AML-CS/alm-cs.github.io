@@ -1,5 +1,13 @@
-(async () => {
+window.initWRFBaq1kmApp = async function init() {
 	const API_ENDPOINT = 'https://wrf-baq-1km.s3.amazonaws.com/last';
+
+	const ncVariablesToName = {
+		'wind': 'Wind speed',
+		'temp': 'Temperature',
+		'uwind': 'U wind speed',
+		'vwind': 'V wind speed',
+		'press': 'Pressure',
+	};
 
 	function showApp() {
 		const app = document.getElementById('wrf-baq-1km');
@@ -43,17 +51,22 @@
 		});
 	}
 
+	function setVariableImg(variable) {
+		const variablesGifs = document.getElementById('variables-gifs');
+		const variableGif = document.createElement('img');
+
+		variableGif.src = `${API_ENDPOINT}/${variable}.gif`;
+		variableGif.alt = ncVariablesToName[variable];
+
+		if (variablesGifs.querySelector('img')) {
+			variablesGifs.removeChild(variablesGifs.querySelector('img'));
+		}
+
+		variablesGifs.appendChild(variableGif);
+	}
+
 	function initVariablesSelect(data) {
 		const variablesSelect = document.getElementById('variables-select');
-		const variablesGifs = document.getElementById('variables-gifs');
-
-		const ncVariablesToName = {
-			'wind': 'Wind speed',
-			'temp': 'Temperature',
-			'uwind': 'U wind speed',
-			'vwind': 'V wind speed',
-			'press': 'Pressure',
-		}
 
 		data.ncVariables.forEach((variable, index) => {
 			const option = document.createElement('option');
@@ -62,6 +75,7 @@
 
 			if (index === 0) {
 				option.selected = true;
+				setVariableImg(variable);
 			}
 
 			variablesSelect.appendChild(option);
@@ -69,21 +83,15 @@
 
 		variablesSelect.addEventListener('change', (e) => {
 			const variable = e.target.value;
-			const variableGif = document.createElement('img');
-
-			variableGif.src = `${API_ENDPOINT}/${variable}.gif`;
-			variableGif.alt = `${variable} forecast`;
-
-			variablesGifs.removeChild(variablesGifs.querySelector('img'));
-			variablesGifs.appendChild(variableGif);
+			setVariableImg(variable);
 		});
 	}
 
 	const data = await fetchLastReport();
 
-	if (Object.keys(data).length > 7) {
+	if (Object.keys(data).length === 8) {
 		initVariablesSelect(data);
 		displayReportData(data);
 		showApp();
 	}
-})()
+}
