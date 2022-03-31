@@ -29,7 +29,7 @@ window.initWRFBaq1kmApp = async function init() {
 			'gfsUrls': (value) => ['GFS data', value.map((url) => `<a href="${url}" target="_blank" rel="noopener noreferrer nofollow" >${url}</a>`).join('<br>')],
 			'ogimetUrl': (value) => ['OGIMET query', `<a href="${value}" target="_blank" rel="noopener noreferrer nofollow" >${value}</a>`],
 			'ogimetStationCoordinates': (value) => ['SKBQ station', `<a href="https://www.google.com/maps/place/${value.join(',')}" target="_blank" rel="noopener noreferrer nofollow" >${value.join(',')}</a>`],
-			'interpolatedVariables': (value) => ['Interpolated variables', value.join('<br>').replace(/:from [0-9]+/g, '')],
+			'interpolatedVariables': (value) => ['Interpolated variables', value.join('<br>').replace(/:fcst(.*?):from [0-9]+/g, '')],
 		}
 
 		Object.entries(data).forEach(([key, value]) => {
