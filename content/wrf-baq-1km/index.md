@@ -8,9 +8,9 @@ The BAQ 1km Forecast system is running in real time on the HPC cluster at the Un
 Fetches data from NOAA (GFS) and OGIMET (METAR).
 Surface level observations are interpolated into the GRIB files.
 
-- **Cycle:** 00, 06, 12, 15, 18, 21 UTC.
-- **Forecast:** Next 3h.
+- **Forecast:** +3h.
 - **GFS:** 0.25 degree resolution, global longitude-latitude grid.
+- **GFS cycle:** 00 UTC.
 - **Altitude:** 150m.
 - **Isobaric level:** 1000hPa.
 
@@ -21,7 +21,10 @@ Surface level observations are interpolated into the GRIB files.
 			<label for="variables-select">Choose a variable:</label>
 			<select id="variables-select" name="variables"></select>
 		</div>
-		<div id="variables-gifs" class="img-loader"></div>
+		<div class="maps-container">
+			<div id="maps-gif" class="img-loader"></div>
+			<div id="maps-folium"></div>
+		</div>
 	</div>
 	<div>
 		<h2>Report info</h2>

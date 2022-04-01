@@ -427,7 +427,7 @@ ul.pagination {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	margin: 12px;
+	margin: 24px;
 }
 
 .select-container > label {
@@ -444,15 +444,15 @@ ul.pagination {
 	margin: 4px;
 	justify-content: center;
 	align-items: center;
-	min-height: 300px;
 	height: 300px;
+	min-height: 300px;
 	min-width: 300px;
 }
 
 .img-loader:before {
   content: " ";
 	position: relative;
-  left: 30%;
+  left: 50%;
   width: 20px;
   height: 20px;
   border: 2px solid gray;
@@ -463,8 +463,22 @@ ul.pagination {
 
 .img-loader > img {
   width: 300px;
-  height: 300px;
+  height: 250px;
 	z-index: 1;
+}
+
+.maps-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#maps-folium > iframe {
+	width: 300px;
+	height: 300px;
+	min-height: 300px;
+	min-width: 300px;
 }
 
 @media (min-width: 720px) {
@@ -477,15 +491,16 @@ ul.pagination {
 		max-width: 550px;
 	}
 
-	.img-loader {
-		min-height: 600px;
-		height: 600px;
-		min-width: 600px;
+	.img-loader, #maps-folium > iframe {
+		min-height: 500px;
+		min-width: 500px;
+		height: 500px;
+		width: 500px;
 	}
 
 	.img-loader > img {
-		width: 600px;
-		height: 600px;
+		width: 500px;
+		height: 400px;
 	}
 }
 
