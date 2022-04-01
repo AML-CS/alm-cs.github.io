@@ -1,7 +1,7 @@
 window.initWRFBaq1kmApp = async function init() {
-	const API_ENDPOINT = 'https://wrf-baq-1km.s3.amazonaws.com/last';
 
 	const ncVariablesToName = {
+		'pwater': 'Precipitable Water',
 		'wind': 'Wind speed',
 		'temp': 'Temperature',
 		'uwind': 'U wind speed',
@@ -15,7 +15,7 @@ window.initWRFBaq1kmApp = async function init() {
 	}
 
 	async function fetchLastReport() {
-		const data = await fetch(`${API_ENDPOINT}/report.json`).then(res => res.json());
+		const data = await fetch('output/report.json').then(res => res.json());
 		return data;
 	}
 
@@ -51,18 +51,30 @@ window.initWRFBaq1kmApp = async function init() {
 		});
 	}
 
-	function setVariableImg(variable) {
-		const variablesGifs = document.getElementById('variables-gifs');
-		const variableGif = document.createElement('img');
+	function loadFolium(variable) {
+		const parent = document.getElementById('maps-folium');
+		const mapsGif = document.createElement('iframe');
 
-		variableGif.src = `${API_ENDPOINT}/${variable}.gif`;
-		variableGif.alt = ncVariablesToName[variable];
+		mapsGif.src = `output/${variable}.html`;
+		mapsGif.title = ncVariablesToName[variable];
 
-		if (variablesGifs.querySelector('img')) {
-			variablesGifs.removeChild(variablesGifs.querySelector('img'));
+		if (parent.querySelector('iframe')) {
+			parent.removeChild(parent.querySelector('iframe'));
 		}
+		parent.appendChild(mapsGif);
+	}
 
-		variablesGifs.appendChild(variableGif);
+	function loadGif(variable) {
+		const parent = document.getElementById('maps-gif');
+		const mapsGif = document.createElement('img');
+
+		mapsGif.src = `output/${variable}.gif`;
+		mapsGif.alt = ncVariablesToName[variable];
+
+		if (parent.querySelector('img')) {
+			parent.removeChild(parent.querySelector('img'));
+		}
+		parent.appendChild(mapsGif);
 	}
 
 	function initVariablesSelect(data) {
@@ -75,7 +87,8 @@ window.initWRFBaq1kmApp = async function init() {
 
 			if (index === 0) {
 				option.selected = true;
-				setVariableImg(variable);
+				loadGif(variable);
+				loadFolium(variable);
 			}
 
 			variablesSelect.appendChild(option);
@@ -83,7 +96,8 @@ window.initWRFBaq1kmApp = async function init() {
 
 		variablesSelect.addEventListener('change', (e) => {
 			const variable = e.target.value;
-			setVariableImg(variable);
+			loadGif(variable);
+			loadFolium(variable);
 		});
 	}
 
