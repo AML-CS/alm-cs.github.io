@@ -390,15 +390,15 @@ ul.pagination {
   vertical-align: bottom;
 }
 
-#wrf-baq-1km {
+#wrf-baq-app {
 	margin-top: 12px;
 }
 
-#wrf-baq-1km.hide > div {
+#wrf-baq-app.hide > div {
 	display: none;
 }
 
-#wrf-baq-1km.hide > #loading {
+#wrf-baq-app.hide > #loading {
 	display: table;
 }
 

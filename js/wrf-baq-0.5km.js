@@ -1,4 +1,4 @@
-window.initWRFBaq1kmApp = async function init() {
+window.initWRFBaqApp = async function init() {
 
 	const ncVariablesToName = {
 		'pwater': 'Precipitable Water',
@@ -10,7 +10,7 @@ window.initWRFBaq1kmApp = async function init() {
 	};
 
 	function showApp() {
-		const app = document.getElementById('wrf-baq-1km');
+		const app = document.getElementById('wrf-baq-app');
 		app.classList.remove('hide');
 	}
 
