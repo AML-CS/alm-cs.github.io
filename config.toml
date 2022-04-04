@@ -85,7 +85,7 @@ url = "/awards/"
 [[menu.main]]
 weight = 10
 name = "WRF BAQ Forecast"
-url = "/wrf-baq-1km/"
+url = "/wrf-baq-0.5km/"
 
 [markup]
   [markup.highlight]

@@ -1,20 +1,23 @@
 ---
-title: "WRF BAQ 1km Forecast"
+title: "WRF BAQ 0.5km Forecast"
 page: true
 ---
 
-The BAQ 1km Forecast system is running in real time on the HPC cluster at the Universidad del Norte.
+The BAQ 0.5km Forecast system is running in real time on the HPC cluster at the Universidad del Norte.
 
 Fetches data from NOAA (GFS) and OGIMET (METAR).
 Surface level observations are interpolated into the GRIB files.
 
 - **Forecast:** +3h.
+- **Grid points distance:** 0.5km.
 - **GFS:** 0.25 degree resolution, global longitude-latitude grid.
 - **GFS cycle:** 00 UTC.
 - **Altitude:** 150m.
 - **Isobaric level:** 1000hPa.
+- **Folium map grid size:** 26x15.
+- **Folium map points distance:** 2km.
 
-<div id="wrf-baq-1km" class="hide">
+<div id="wrf-baq-app" class="hide">
 	<span id="loading">Loading...</span>
 	<div>
 		<div class="select-container">
@@ -83,4 +86,4 @@ Surface level observations are interpolated into the GRIB files.
 /
 ```
 
-<script>window.initWRFBaq1kmApp();</script>
+<script>window.initWRFBaqApp();</script>
