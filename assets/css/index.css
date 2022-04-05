@@ -390,118 +390,11 @@ ul.pagination {
   vertical-align: bottom;
 }
 
-#wrf-baq-app {
-	margin-top: 12px;
-}
-
-#wrf-baq-app.hide > div {
-	display: none;
-}
-
-#wrf-baq-app.hide > #loading {
-	display: table;
-}
-
-#loading {
-	display: none;
-	margin: 4px auto;
-	padding: 200px 100px;
-}
-
-#report-data {
-	margin: auto;
-	max-width: 90%;
-}
-
-#report-data tr {
-	word-wrap: break-word;
-}
-
-#report-data td {
-	word-wrap: break-word;
-	max-width: 150px;
-	min-width: 100px;
-}
-
-.select-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	margin: 24px;
-}
-
-.select-container > label {
-	margin-right: 4px;
-}
-
-.select-container > select {
-	width: 300px;
-}
-
-.img-loader {
-	display: flex;
-  position: relative;
-	margin: 4px;
-	justify-content: center;
-	align-items: center;
-	height: 300px;
-	min-height: 300px;
-	min-width: 300px;
-}
-
-.img-loader:before {
-  content: " ";
-	position: relative;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  border: 2px solid gray;
-  border-color: transparent gray transparent gray;
-  border-radius: 50%;
-  animation: loader 1s linear infinite;
-}
-
-.img-loader > img {
-  width: 300px;
-  height: 250px;
-	z-index: 1;
-}
-
-.maps-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-}
-
-#maps-folium > iframe {
-	width: 300px;
-	height: 300px;
-	min-height: 300px;
-	min-width: 300px;
-}
-
 @media (min-width: 720px) {
   .image-right {
     float: right;
     margin-left: 22px;
   }
-
-	#report-data td {
-		max-width: 550px;
-	}
-
-	.img-loader, #maps-folium > iframe {
-		min-height: 500px;
-		min-width: 500px;
-		height: 500px;
-		width: 500px;
-	}
-
-	.img-loader > img {
-		width: 500px;
-		height: 400px;
-	}
 }
 
 @media (min-width: 992px) {
@@ -555,18 +448,5 @@ ul.pagination {
   nav ul.second li a,
   nav ul.third li a {
     padding: 0.75em 1em;
-  }
-
-	#report-data td {
-		max-width: 700px;
-	}
-}
-
-@keyframes loader {
-  0% {
-    transform: translate(-50%,-50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%,-50%) rotate(360deg);
   }
 }
