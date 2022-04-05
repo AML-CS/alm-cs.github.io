@@ -1,3 +1,4 @@
 .vscode
 public
 *.lock
+.DS_Store

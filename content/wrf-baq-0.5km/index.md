@@ -14,8 +14,8 @@ Surface level observations are interpolated into the GRIB files.
 - **GFS cycle:** 00 UTC.
 - **Altitude:** 150m.
 - **Isobaric level:** 1000hPa.
-- **Folium map grid size:** 26x15.
-- **Folium map points distance:** 2km.
+- **Interactive map grid size:** 26x15.
+- **Interactive map points distance:** 2km.
 
 <div id="wrf-baq-app" class="hide">
 	<span id="loading">Loading...</span>
@@ -48,7 +48,7 @@ Surface level observations are interpolated into the GRIB files.
  e_sn                                = 82,
  e_vert                              = 35,
  p_top_requested                     = 5000,
- num_metgrid_levels                  = 40
+ num_metgrid_levels                  = 34,
  num_metgrid_soil_levels             = 4,
  dx                                  = 356.324,
  dy                                  = 356.324,
