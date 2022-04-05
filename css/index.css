@@ -405,7 +405,7 @@ ul.pagination {
 #loading {
 	display: none;
 	margin: 4px auto;
-	padding: 200px;
+	padding: 200px 100px;
 }
 
 #report-data {

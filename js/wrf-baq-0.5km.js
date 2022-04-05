@@ -51,30 +51,32 @@ window.initWRFBaqApp = async function init() {
 		});
 	}
 
-	function loadFolium(variable) {
-		const parent = document.getElementById('maps-folium');
-		const mapsGif = document.createElement('iframe');
+	function createElementIntoContainer(containerId, tag, variables) {
+		const parent = document.getElementById(containerId);
+		const child = document.createElement(tag);
 
-		mapsGif.src = `output/${variable}.html`;
-		mapsGif.title = ncVariablesToName[variable];
+		Object.entries(variables).forEach(([key, value]) => {
+			child[key] = value;
+		});
 
-		if (parent.querySelector('iframe')) {
-			parent.removeChild(parent.querySelector('iframe'));
+		if (parent.querySelector(tag)) {
+			parent.removeChild(parent.querySelector(tag));
 		}
-		parent.appendChild(mapsGif);
+		parent.appendChild(child);
 	}
 
-	function loadGif(variable) {
-		const parent = document.getElementById('maps-gif');
-		const mapsGif = document.createElement('img');
+	function loadFolium(variable, createdAt) {
+		createElementIntoContainer('maps-folium', 'iframe', {
+			src: `output/${variable}_${createdAt}:00.html`,
+			title: ncVariablesToName[variable],
+		});
+	}
 
-		mapsGif.src = `output/${variable}.gif`;
-		mapsGif.alt = ncVariablesToName[variable];
-
-		if (parent.querySelector('img')) {
-			parent.removeChild(parent.querySelector('img'));
-		}
-		parent.appendChild(mapsGif);
+	function loadGif(variable, createdAt) {
+		createElementIntoContainer('maps-gif', 'img', {
+			src: `output/${variable}_${createdAt}:00.gif`,
+			alt: ncVariablesToName[variable],
+		});
 	}
 
 	function initVariablesSelect(data) {
@@ -87,8 +89,8 @@ window.initWRFBaqApp = async function init() {
 
 			if (index === 0) {
 				option.selected = true;
-				loadGif(variable);
-				loadFolium(variable);
+				loadGif(variable, data.createdAt);
+				loadFolium(variable, data.createdAt);
 			}
 
 			variablesSelect.appendChild(option);
@@ -96,8 +98,9 @@ window.initWRFBaqApp = async function init() {
 
 		variablesSelect.addEventListener('change', (e) => {
 			const variable = e.target.value;
-			loadGif(variable);
-			loadFolium(variable);
+
+			loadGif(variable, data.createdAt);
+			loadFolium(variable, data.createdAt);
 		});
 	}
 
