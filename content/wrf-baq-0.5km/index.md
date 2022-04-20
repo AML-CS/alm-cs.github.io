@@ -3,12 +3,12 @@ title: "WRF BAQ 0.5km Forecast"
 page: true
 ---
 
-The BAQ 0.5km Forecast system is running in real time on the HPC cluster at the Universidad del Norte.
+The BAQ 0.5km Forecast system is updated every 3h and runs on the Granado HPC cluster at Universidad del Norte.
 
 Fetches data from NOAA (GFS) and OGIMET (METAR).
 Surface level observations are interpolated into the GRIB files.
 
-- **Forecast:** +3h.
+- **Forecast:** +2-4h.
 - **Grid points distance:** 0.5km.
 - **GFS:** 0.25 degree resolution, global longitude-latitude grid.
 - **GFS cycle:** 00 UTC.
@@ -20,6 +20,7 @@ Surface level observations are interpolated into the GRIB files.
 <div id="wrf-baq-app" class="hide">
 	<span id="loading">Loading...</span>
 	<div>
+    <h2 id="report-title"></h2>
 		<div class="select-container">
 			<label for="variables-select">Choose a variable:</label>
 			<select id="variables-select" name="variables"></select>
@@ -29,10 +30,15 @@ Surface level observations are interpolated into the GRIB files.
 			<div id="maps-folium"></div>
 		</div>
 	</div>
-	<div>
-		<h2>Report info</h2>
-		<table id="report-data"></table>
-	</div>
+  <table id="report-data"></table>
+  <div>
+    <h2>All Reports</h2>
+    <table id="all-reports"></table>
+    <div class="pagination">
+      <button id="newer" disabled>Newer</button>
+      <button id="older">Older</button>
+    </div>
+  </div>
 </div>
 
 ---
@@ -85,5 +91,7 @@ Surface level observations are interpolated into the GRIB files.
  ref_y                               = 41.0,
 /
 ```
+
+Source code: https://github.com/AML-CS/wrf-baq-0.5km
 
 <script>window.initWRFBaqApp();</script>

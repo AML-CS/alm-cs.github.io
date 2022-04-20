@@ -16,16 +16,17 @@
 	padding: 200px 100px;
 }
 
-#report-data {
+#wrf-baq-app table {
 	margin: auto;
 	max-width: 90%;
+  margin-top: 12px;
 }
 
-#report-data tr {
+#wrf-baq-app table tr {
 	word-wrap: break-word;
 }
 
-#report-data td {
+#wrf-baq-app table td {
 	word-wrap: break-word;
 	max-width: 150px;
 	min-width: 100px;
@@ -89,8 +90,41 @@
 	min-width: 300px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 22px;
+}
+
+.pagination button {
+  cursor: pointer;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid black;
+}
+
+.pagination button:hover:enabled {
+  background: #4ba2de;
+  color: white;
+}
+
+.pagination #newer {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.pagination #older {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-left: none;
+}
+
+.pagination button:disabled {
+  cursor: inherit;
+}
+
 @media (min-width: 720px) {
-	#report-data td {
+	#wrf-baq-app table td {
 		max-width: 550px;
 	}
 
@@ -108,7 +142,7 @@
 }
 
 @media (min-width: 992px) {
-	#report-data td {
+	#wrf-baq-app table td {
 		max-width: 700px;
 	}
 }
