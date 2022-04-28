@@ -7,106 +7,165 @@ draft: false
 The following guide show how to install, configure and run the Weather Research and Forecasting Model (WRF) and it's most popular module WRFDA in CentOS 7 - OpenHPC.
 <!--more-->
 
-## WRF
-WRF 4.2, WPS 4.0, ARWpost, WRFDA 4.0, obsproc, NetCDF, NetCDF-Fortran, GFortran, C++, GrADS, UniData, MPI, jasper, libpng and others many dependencies are needed to run WRF, WRFDA and view the processed data, in this guide all these dependencies will be installed.
-### Download, compile and configure WRF
-For the execution of WRF it is necessary to download, compile and configure WPS and WRF, in this case all these process are synthesized by the installations scripts `setup-WRF.sh` and `setup-WRFDA.sh`
+## Setup
 
-### First create a new SLRUM job allocation
-```shell
-salloc --job-name "wrf-1km" --ntasks=72 -t 24:00:00 -A syseng -p syseng
-```
+The `setup-WRF.sh`, `setup-WRFDA-3DVAR.sh` and `setup-WRFDA-4DVAR.sh` scripts will download and install all the dependencies needed to run WRF and WRFDA. Make sure to select the following options during the build process:
 
-### Loading Module
-Once the previous scripts have been executed, we proceed to load the WRF / 4.2.0 module, this by executing the following command:
-```shell
+- WRF: 34, 1 for gfortran and distributed memory
+- WPS: 3
+- WRFDA-3DVAR: 34 distributed memory
+
+When the script are done, the new modules can be loaded:
+
+```bash
 module load wrf/4.3 wrfda/4.3-3dvar
 ```
-### Create a workspace folder
-```shell
-mkdir workspace
-cd workspace
-```
-### Download Initial Conditions
-To download the initial conditions used by the model, it is required to be previously registered on the [NCAR](https://rda.ucar.edu/index.html?hash=data_user&action=register) website. Once registered, execute the following command and enter your email and password when required.
 
-```shell
-download-grib [INITIAL DATE] [FINAL DATE]
-```
-`[INITIAL DATE]` and `[FINAL DATE]` in the format `YYYY-MM-DD`
+On loading the modules, the following scripts will be available for use:
 
-**Example**
-```shell
-download-grib 2020-01-01 2020-01-02
-```
-```=shell
-Email: $EMAIL
-Password: 
-Downloading fnl_20200101_00_00.grib2
-100.000 % CompletedDownloading fnl_20200101_06_00.grib2
-100.000 % CompletedDownloading fnl_20200101_12_00.grib2
-100.000 % CompletedDownloading fnl_20200101_18_00.grib2
-100.000 % CompletedDownloading fnl_20200102_00_00.grib2
-100.000 % CompletedDownloading fnl_20200102_06_00.grib2
-100.000 % CompletedDownloading fnl_20200102_12_00.grib2
-100.000 % CompletedDownloading fnl_20200102_18_00.grib2
-100.000 % CompletedObservations saved in ./real-data!
-```
+- download-geog-data
+- download-grib
+- download-obs
+- download-prep
+- generate-wrfda-be
+- run-wps
+- run-wrf
+- run-wrfda
+- run-obsproc
+- run-arwpost
+- run-arwpost-ensemble
 
+All of them are self-descriptive, you can find out how to use them by typing `--help`:
 
+```bash
+run-wrf --help
+usage: run_wrf.py [-h] [-i interval] [-g grid_size] [-o output] [-n ntasks]
+                  [--only-wrf] [--only-real] [--srun] [-d]
+                  start_date end_date
 
-### Running WPS
-The WRF Pre-Processing System (WPS) is a collection of Fortran and C programs that provides data used as input to the real.exe and real_nmm.exe programs. There are three main programs and a number of auxiliary programs that are part of WPS.  Both the ARW and NMM  dynamical cores in WRF are supported by WPS. 
+Run WRF real.exe or wrf.exe
 
-To run WPS it is necessary to have downloaded the geographic data, modify the namelist.wps file with the parameters, domain and dimensions of the mesh, to know a little more about these parameters enter [here](https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html) this file is located at `${WPS_DIR}` directory. Then run the following command specifying the start date and the end date.
-```shell
-run-wps [INITIAL DATE] [FINAL DATE] -i [NUMBER OF HOURS] -g [GRID SIZE] --real-data [INITIAL CONDITIONS]
-```
-`[INITIAL DATE]` and `[FINAL DATE]` in the format `"YYYY-MM-DD HH"`
-`[INITIAL CONDITIONS]` Directory that contains inital conditions Ex: `./real-data`
-`[NUMBER OF HOURS]` here you put the numbers of hours between the observations.
+positional arguments:
+  start_date            First perturbation valid date (YYYY-mm-dd H)
+  end_date              Last perturbation valid date (YYYY-mm-dd H)
 
-**Example**
-```shell
-run-wps "2021-01-05 00" "2021-01-07 18" -i 6 -g 1000 --real-data ./real-data
-```
-```=shell
-Start date: 2020-01-01_00:00:00
-End date: 2020-01-02_18:00:00
-Inverval seconds: 21600
-Running geogrid...
-Successful completion
-
-Running ungrib
-Using data in /home/syseng/omejiaa/workspace/real-data
-Successful completion
-
-Running metgrid...
-Successful completion
+optional arguments:
+  -h, --help            show this help message and exit
+  -i interval, --interval interval
+                        Hours interval, default: 6
+  -g grid_size, --grid-size grid_size
+                        Grid size (meters), default: None
+  -o output, --output output
+                        Output directory
+  -n ntasks, --ntasks ntasks
+                        MPI processors or SLURM tasks
+  --only-wrf            Run only wrf.exe
+  --only-real           Run only real.exe
+  --srun                Run with srun (inside sbatch or salloc)
+  -d, --debug           Debug mode
 ```
 
-### Running WRF
-Weather Research and Forecasting Model (WRF) is a mesoscale numerical weather prediction system. To execute WRF it is necessary to modify the namelist.input file with the desired parameters, to know a little more about these parameters enter [here](https://esrl.noaa.gov/gsd/wrfportal/namelist_input_options.html) this file is located at `${WRF_DIR}` directory. Then execute the following command specifying the start date, the end date, the number of hours that the interval comprises and the output directory.
+## Run WRF step by step
 
-```shell
-run-wrf  [INITIAL DATE]  [FINAL DATE]  -i [NUMBER OF HOURS] -n [NUMBER OF TASKS] -g [GRID SIZE] --srun --only-real
+1. First create a new SLRUM job allocation
+```bash
+salloc --job-name "wrf-test" --ntasks=72 -t 24:00:00 -A syseng -p syseng
 ```
 
-```shell
-run-wrf  [INITIAL DATE]  [FINAL DATE]  -i [NUMBER OF HOURS] -n [NUMBER OF TASKS] -g [GRID SIZE] -o [OUTPUT DIRECTORY] --srun --only-wrf
+2. Load modules
+```bash
+module load wrf/4.3
 ```
 
-`[INITIAL DATE]` and `[FINAL DATE]` in the format `"YYYY-MM-DD HH"`
-`[NUMBER OF HOURS]` here you put the numbers of hours between the observations.
-**Example**
-```shell
-# Run --help or --debug for more info
-run-wrf "2021-01-05 00" "2021-01-07 18" -i 6 -n 8 -g 1000 --srun --only-real
- 
-# Run --help or --debug for more info
-run-wrf "2021-01-05 00" "2021-01-07 18" -i 6 -n 64 -g 1000 -o ./baq-1km-ensemble/original --srun --only-wrf
+3. Move to your workspace (or create a new one)
+```bash
+cd /work/syseng/users/$USERNAME/workspace/wrf-test
 ```
-### ARW-Post
+
+4. (if not exists) Download observations
+```bash
+download-grib "2022-01-01" "2022-01-31"
+```
+
+5. Run geogrid + ungrid + metgrid (--help or --debug for more info)
+```bash
+run-wps "2022-01-01 00" "2022-01-31 18" -i 6 -g 1000 --data-dir ./grib-obs
+```
+
+6. Run real.exe (--help or --debug for more info)
+```bash
+run-wrf "2022-01-06 00" "2022-01-07 00" -i 6 -n 8 -g 1000 --srun --only-real
+```
+
+7. Run wrf.exe (--help or --debug for more info)
+```bash
+run-wrf "2022-01-06 00" "2022-01-07 00" -i 6 -n 64 -g 1000 --srun --only-wrf --output /work/syseng/users/$USERNAME/workspace/wrf-test/wrf_output
+```
+
+8. (optional) watch real-time logs
+```bash
+tail -f $WRF_DIR/run/rsl.error.*
+```
+
+9. (optional) cancel jobs by user
+```bash
+scancel --user=$USERNAME
+```
+
+## Run WRFDA step by step
+
+1. First create a new SLRUM job allocation
+```bash
+salloc --job-name "wrfda-test" --ntasks=72 -t 24:00:00 -A syseng -p syseng
+```
+
+2. Load modules
+```bash
+module load wrf/4.3 wrfda/4.3
+```
+
+3. Move to your workspace (or create a new one)
+```bash
+cd /work/syseng/users/$USERNAME/workspace/wrfda-test
+```
+
+4. (if not exists) Download observations
+```bash
+download-grib "2022-01-01" "2022-01-31"
+```
+
+5. Run geogrid + ungrid + metgrid (--help or --debug for more info)
+```bash
+run-wps "2022-01-01 00" "2022-01-31 18" -i 6 -g 1000 --data-dir ./grib-obs
+```
+
+6. Generate first guest wrf.exe (--help or --debug for more info)
+```bash
+run-wrf "2022-01-06 18" "2022-01-07 00" -i 6 -n 64 -g 1000 --srun --only-wrf --output /work/syseng/users/$USERNAME/workspace/wrfda-test/wrf_output
+```
+
+7. Generate background error (--help or --debug for more info)
+```bash
+generate-wrfda-be "2022-01-06 12" "2022-01-10 12" -i 6 -n 64 -g 1000 --data-dir ./ --srun
+```
+
+8. Download prepbufr observations (ucar.edu)
+```bash
+download-prep "2022-01-01" "2022-01-31"
+```
+
+9. Generate ensemble (--help or --debug for more info)
+```bash
+run-wrfda "2022-01-06 18" "2022-01-07 00" -i 6 -n 64 -g 1000 -o ./wrfda-test --srun --generate-ensemble 1
+```
+
+10. (optional) watch real-time logs
+```bash
+tail -f $WRF_DIR/run/rsl.error.*
+```
+
+## ARW-Post
+
 This module generate GrADS and/or Vis5D input files from WRF ARW output files that allow to visualize the data in GrADS or Python. For this is necessary to modify the namelist.ARWpost file with the desired parameters, this file is located at `${ARW_DIR}` directory. Then execute the following command.
 ```shell
 run-arwpost -f [INITIAL DATE] -t [FINAL DATE] [INPUT NAMEFILE] [OUTPUT FILENAME]
@@ -130,9 +189,9 @@ START PROCESSING DATA
 
  Processing  time --- 2020-01-01_00:00:00
    Found the right date - continue
-   
+
    ...
-   
+
  Processing  time --- 2020-01-02_18:00:00
    Found the right date - continue
 
@@ -146,110 +205,9 @@ CREATING .ctl file
 
 ```
 Once executed, download the `OUTPUT FILENAME.ctl` and `OUTPUT FILENAME.dat` files, with which you can view the results of the model in the GrADS tool or in Python.
-## WRFDA
-To generate an ensemble with Weather Research and Forecasting Model Data Assimilation (WRFDA) perform the following steps. 
 
-### Download, compile and configure WRF
-For the execution of WRFDA it is necessary to download, compile and configure WRFDA, in this case all this process is synthesized by the following scripts.
+## ARW-Post for ensembles
 
-### Loading Module
-Once the previous scripts have been executed, we proceed to load the WRF / 4.2.0 module, this by executing the following command:
-```shell
-module load wrfda
-```
-### Configuring data
-To execute WRFDA you need 3 data sets, a set of initial conditions generated by WRF, a pre-processed data set and a Background Error.
-
-#### Initial conditions generated by WRF
-For this data set it is necessary to execute WRF, to generate a set of initial conditions. It is not necessary to run it again since at the time you run WRFDA it will do it previously. REMEMBER RUN WPS.
-
-#### Download pre-processed data set
-To download the pre-processed data set used by the model, it is required to be previously registered on the [NCAR](https://rda.ucar.edu/index.html?hash=data_user&action=register) website. Once registered, execute the following command and enter your email and password when required.
-
-```shell
-download-prep [DATA SET INITIAL DATE] [DATA SET FINAL DATE]
-```
-```shell
-download-prep 2020-01-01 2020-01-02
-```
-**Example**
-```=shell
-Email: $EMAIL
-Password: 
-Downloading https://rda.ucar.edu/data/ds337.0/tarfiles/2020/prepbufr.20200101.nr.tar.gz
-100.000 % Completedprepbufr.20200101.nr.tar.gz unziped and saved in ./prep-data!
-Downloading https://rda.ucar.edu/data/ds337.0/tarfiles/2020/prepbufr.20200102.nr.tar.gz
-100.000 % Completedprepbufr.20200102.nr.tar.gz unziped and saved in ./prep-data!
-Symbolic links created successfully!
-```
-
-`[DATA SET INITIAL DATE]` and `[DATA SET FINAL DATE]` in the format `YYYY-MM-DD`
-#### Background Error
-for the background error, there are two options, use a generated ensemble or use a default one that WRFDA brings, in this case it is generated with the default ensemble. If you want to modify it, you can do it from the  directory `${WRFDA_DIR}`, for more information enter [here](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.3/users_guide_chap6.html#_Running_WRFDA_1).
-### Generate an ensemble
-To execute WRFDA it is necessary to modify the namelist.input file with the desired parameters, to know a little more about these parameters enter [here](https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.3/users_guide_chap6.html#_Running_WRFDA_1) this file is located at `${WRFDA_DIR}` directory. Then execute the following command specifying the start date, the end date, the number of hours that the interval comprises and the output directory.
-
-```shell
-generate-ensemble -f [INITIAL DATE] -t [FINAL DATE]  -h [NUMBERS OF HOURS TO RUN] -i [NUMBER OF HOURS] -d [OUTPUT DIRECTORY] [NUMBER OF ENSEMBLE]
-```
-
-`[INITIAL DATE]` and `[FINAL DATE]` in the format `"YYYY-MM-DD HH"`
-`[NUMBER OF HOURS]` here you put the numbers of hours between the observations.
-
-**Expected Output**
-```shell
-generate-ensemble -f "2020-01-01 00" -t "2020-01-02 18" -i 6 -h 42 -d . 1
-```
-```=shell
-Running simulation...
-Run hours: 42
-Inverval seconds: 21600
-Start date: 2020-01-01 00
-End date: 2020-01-02 18
-Running real.exe with 5 processors
-
-real    0m3.761s
-user    0m16.795s
-sys     0m1.757s
-
-Running wrf.exe with 32 processors
-
-real    2m51.692s
-user    88m22.164s
-sys     2m54.171s
-Successful WRF run
-
-Member 1
-Generating first initial condition...
-Running real.exe with 5 processors
-
-real    0m3.778s
-user    0m16.739s
-sys     0m1.846s
-
-Perturbing initial condition...
-Running wrfda with 32 processors
-
-real    0m50.579s
-user    25m40.811s
-sys     1m5.448s
-
-Updating boundary conditions...
-Running simulation with new initial conditions...
-
-Running wrf.exe with 32 processors
-
-real    2m41.524s
-user    83m1.490s
-sys     2m50.085s
-Successful WRF run
-
-Ensemble member 1 created succesfully
-
-Finished!
-```
-
-### ARW-Post for ensembles
 This module generate GrADS and/or Vis5D input files from WRF ARW output files that allow to visualize the data in GrADS or Python. For this is necessary to modify the namelist.ARWpost file with the desired parameters, this file is located at `${ARW_DIR}` directory. Then execute the following command.
 ```shell
 run-arw-ensemble -f [INITIAL DATE] -t [FINAL DATE] -d [FILES DIRECTORY]
@@ -300,19 +258,31 @@ CREATING .ctl file
 ```
 
 Once executed, download the `ensemble-m1.ctl` and `ensemble-m1.dat` files, with which you can view the results of the model in the GrADS tool or in Python.
+
 ## GrADS
+
 The Grid Analysis and Display System (GrADS) is an interactive desktop tool that is used for easy access, manipulation, and visualization of earth science data. GrADS has two data models for handling gridded and station data. GrADS supports many data file formats, including binary (stream or sequential), GRIB (version 1 and 2), NetCDF, HDF (version 4 and 5), and BUFR (for station data). GrADS has been implemented worldwide on a variety of commonly used operating systems and is freely distributed over the Internet.
 
-This guide shows a quick way to visualize an ensemble in GrADS, for this we download the `.ctl` and `.dat` files, then we open GrADS and go to the directory where the files were saved. 
+This guide shows a quick way to visualize an ensemble in GrADS, for this we download the `.ctl` and `.dat` files, then we open GrADS and go to the directory where the files were saved.
 ``` shell
 cd [DIRECTORY]
 ```
 Once in the directory we open the file by executing the following command.
 `open [filename]`
 To visualize the behaviour of the `u` and `v` components of the wing and the value of this follow the next commands
-``` 
+```
 set gxout stream
 set t 1 43
 set lopping on
 d u;v;mag(u,v)
 ```
+
+## Related documentation
+- https://www2.mmm.ucar.edu/wrf/users/namelist_best_prac_wps.html
+- https://www2.mmm.ucar.edu/wrf/users/wrfda/faq.html#running_GENBE
+- https://www2.mmm.ucar.edu/wrf/users/wrfda/OnlineTutorial/Help/gen_be_forecasts.html
+- https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.3/
+- https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_v4/v4.3/users_guide_chap6.html
+- https://www2.mmm.ucar.edu/wrf/users/wrfda/Tutorials/2016_Aug/docs/WRFDA_Observations.pdf
+- https://docplayer.net/61091026-Observation-pre-processor-for-wrfda-ncar-mmm.html
+- https://slideplayer.com/slide/7011895/
