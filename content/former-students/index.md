@@ -38,15 +38,20 @@ page: true
 	<div class="card">
 		<img src="images/randy-consuegra.jpg" alt="Randy Steven Consuegra Ortega"/>
 		<sub>
-			Randy Steven Consuegra Ortega, M.Sc. in Computer Science. Data-Driven Models for Variational Data Assimilation. <a href="https://sites.google.com/view/rsconsuegra/home" target="_blank" rel="noreferrer">Website</a>
+			Randy Steven Consuegra Ortega, M.Sc. in Computer Science. Data-Driven Models for Variational Data Assimilation. (2021) <a href="https://sites.google.com/view/rsconsuegra/home" target="_blank" rel="noreferrer">Website</a>
 		</sub>
 	</div>
 	<div class="card">
-		<img src="images/empty.png" alt="Empty"/>
-		<sub></sub>
+		<img src="images/felipe-acevedo.jpg" alt="Felipe Jose Acevedo Garcia"/>
+		<sub>
+			Felipe Jose Acevedo Garcia, M.Sc. in Computer Science. (2022)
+		</sub>
 	</div>
 	<div class="card">
-		<img src="images/empty.png" alt="Empty"/>
-		<sub></sub>
+		<img src="images/juan-rodriguez.jpg" alt="Juan Sebastian Rodriguez Donado"/>
+		<sub>
+			Juan Sebastian Rodriguez Donado, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation. (2022)
+			<a href="https://sjdonado.github.io" target="_blank" rel="noreferrer">Website</a>
+		</sub>
 	</div>
 </div>

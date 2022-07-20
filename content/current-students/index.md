@@ -5,13 +5,6 @@ page: true
 
 <div class="images-table">
 	<div class="card">
-		<img src="images/juan-rodriguez.jpg" alt="Juan Sebastian Rodriguez Donado"/>
-		<sub>
-			Juan Sebastian Rodriguez Donado, M.Sc. in Computer Science. Data Assimilation Method for Air Quality Estimation.
-			<a href="https://sjdonado.github.io" target="_blank" rel="noreferrer">Website</a>
-		</sub>
-	</div>
-	<div class="card">
 		<img src="images/andres-movilla.jpg" alt="Andres Felipe Movilla Obregon"/>
 		<sub>
 			Andres Felipe Movilla Obregon, M.Sc. in Computer Science.
@@ -32,10 +25,12 @@ page: true
 		</sub>
 	</div>
 	<div class="card">
-		<img src="images/felipe-acevedo.jpg" alt="Felipe Jose Acevedo Garcia"/>
-		<sub>
-			Felipe Jose Acevedo Garcia, M.Sc. in Computer Science.
-		</sub>
+		<img src="images/empty.png" alt="Empty"/>
+		<sub></sub>
+	</div>
+	<div class="card">
+		<img src="images/empty.png" alt="Empty"/>
+		<sub></sub>
 	</div>
 	<div class="card">
 		<img src="images/empty.png" alt="Empty"/>
