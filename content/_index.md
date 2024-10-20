@@ -13,6 +13,7 @@ Welcome to the Applied Math and Computer Science Laboratory (AML-CS) at Universi
 - Numerical Optimization.
 - Bayesian Inference.
 - High Performance Computing.
+- Data Science and Data Engineering.
 
 Feel free to contact me if you want to be part of my group.
 
